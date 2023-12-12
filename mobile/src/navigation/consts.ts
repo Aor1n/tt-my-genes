@@ -1,0 +1,11 @@
+export enum SCREEN {
+  // global
+  LOGIN = 'LOGIN',
+  // bottom tab
+  ROOT_BOTTOM_TABS = 'ROOT_BOTTOM_TABS',
+  HOME = 'HOME',
+  PROFILE = 'PROFILE',
+  // other
+  EDIT_EXPENSE_MODAL = 'EDIT_EXPENSE_MODAL',
+  CREATE_EXPENSE_MODAL = 'CREATE_EXPENSE_MODAL',
+}

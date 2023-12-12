@@ -1,17 +1,8 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, Text, View} from 'react-native';
+import AppStack from './src/navigation/stack/AppStack.tsx';
 
 function App(): React.JSX.Element {
-  return (
-    <SafeAreaView>
-      <StatusBar />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View>
-          <Text>Init</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+  return <AppStack />;
 }
 
 export default App;
