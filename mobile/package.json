@@ -7,7 +7,9 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "xcode": "xed ./ios",
+    "ios:clean-install": "rm -rf node_modules && rm -rf yarn.lock && rm -rf ios/Pods && rm -rf ios/Podfile.lock && yarn cache clean && yarn && npx pod-install"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.5.11",
