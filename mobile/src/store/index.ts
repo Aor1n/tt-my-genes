@@ -8,7 +8,7 @@ import {SLICE_KEY} from './consts.ts';
 const rootPersistConfig = {
   key: SLICE_KEY.ROOT,
   storage: AsyncStorage,
-  blacklist: [SLICE_KEY.APP, SLICE_KEY.PROFILE],
+  blacklist: Object.values(SLICE_KEY),
 };
 
 const rootReducer = combineReducers({
