@@ -12,8 +12,11 @@ const rootPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  app: persistReducer(appPersistConfig, appSlice.reducer),
-  profile: persistReducer(profilePersistConfig, profileSlice.reducer),
+  [SLICE_KEY.APP]: persistReducer(appPersistConfig, appSlice.reducer),
+  [SLICE_KEY.PROFILE]: persistReducer(
+    profilePersistConfig,
+    profileSlice.reducer,
+  ),
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
