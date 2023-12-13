@@ -1,7 +1,7 @@
 import React from 'react';
 import TouchableScale from 'react-native-touchable-scale';
 
-interface TouchableScaleViewProps
+export interface TouchableScaleViewProps
   extends React.ComponentPropsWithoutRef<typeof TouchableScale> {}
 
 const TouchableScaleView = (props: TouchableScaleViewProps) => (
