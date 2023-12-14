@@ -6,11 +6,13 @@ interface CustomTheme extends Omit<Theme, 'colors'> {
     secondary: '#455EFF';
     black: '#000000';
     white: '#FFFFFF';
+    grey: '#696969';
     bg: '#fcfbfc';
     text: '#3E3E3E';
     textInverted: '#FFFFFF';
     textPlaceholder: '#AAA9C0';
     border: '#BFBFBF';
+    divider: '#e8e7e7';
   };
 }
 
@@ -23,11 +25,13 @@ const theme: CustomTheme = {
     secondary: '#455EFF',
     black: '#000000',
     white: '#FFFFFF',
+    grey: '#696969',
     bg: '#fcfbfc',
     text: '#3E3E3E',
     textInverted: '#FFFFFF',
     textPlaceholder: '#AAA9C0',
     border: '#BFBFBF',
+    divider: '#e8e7e7',
   },
 };
 
