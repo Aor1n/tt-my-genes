@@ -4,6 +4,7 @@ interface CustomTheme extends Omit<Theme, 'colors'> {
   colors: {
     primary: '#5B58AD';
     secondary: '#455EFF';
+    error: '#FF0000';
     black: '#000000';
     white: '#FFFFFF';
     grey: '#696969';
@@ -23,6 +24,7 @@ const theme: CustomTheme & Theme = {
     ...DefaultTheme.colors,
     primary: '#5B58AD',
     secondary: '#455EFF',
+    error: '#FF0000',
     black: '#000000',
     white: '#FFFFFF',
     grey: '#696969',

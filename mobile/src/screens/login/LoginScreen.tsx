@@ -17,7 +17,7 @@ const LoginScreen: RootStackComponent<typeof SCREEN.LOGIN> = () => {
   return (
     <Container style={styles.container}>
       <View style={styles.inputContainer}>
-        <Input placeholder={'Enter name'} isFullBordered />
+        {/*<Input placeholder={'Enter name'} isFullBordered />*/}
       </View>
       <Button title={'Login'} isLoading={false} onPress={onPress} />
     </Container>

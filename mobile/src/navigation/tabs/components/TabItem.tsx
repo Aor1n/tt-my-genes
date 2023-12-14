@@ -36,6 +36,7 @@ const useStyles = getStylesHook<boolean>((theme, isFocused) => ({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 20,
   },
   text: {
     color: isFocused ? theme.colors.primary : theme.colors.grey,

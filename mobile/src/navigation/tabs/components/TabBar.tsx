@@ -55,13 +55,15 @@ const PLUS_CONTAINER_HALF_SIZE = 56 / 2;
 const PLUS_CONTAINER_POSITION =
   Dimensions.get('window').width / 2 - PLUS_CONTAINER_HALF_SIZE;
 
+const TAB_ITEM_PADDING = 20;
+
 const useStyles = getStylesHook<number>((theme, bottomInsert = 20) => ({
   container: {
     flexDirection: 'row',
     borderTopWidth: 1,
     borderTopColor: theme.colors.divider,
-    paddingTop: bottomInsert,
-    paddingBottom: bottomInsert + (IS_IOS ? 0 : 6),
+    paddingTop: bottomInsert - TAB_ITEM_PADDING,
+    paddingBottom: bottomInsert - TAB_ITEM_PADDING + (IS_IOS ? 0 : 6),
   },
   plusContainer: {
     position: 'absolute',
