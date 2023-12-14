@@ -2,16 +2,16 @@ import {createSlice} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SLICE_KEY} from 'store/consts.ts';
 
-const state = {
+const initialState = {
   filters: '',
 };
 
 export const appSlice = createSlice({
   name: SLICE_KEY.APP,
-  initialState: state,
+  initialState,
   reducers: {
     setFilters: (state, {payload}) => {
-      console.log(state, payload);
+      state.filters = payload;
     },
   },
 });

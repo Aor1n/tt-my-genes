@@ -1,7 +1,7 @@
 import {PersistGate} from 'redux-persist/integration/react';
 import {Provider} from 'react-redux';
 import {PropsWithChildren} from 'react';
-import {persistor, store} from 'store/index.ts';
+import {persistor, store} from 'store/store.ts';
 
 const PersistedStoreProvider = ({children}: PropsWithChildren) => {
   return (
