@@ -14,7 +14,7 @@ const Input = ({label, isFullBordered, ...rest}: InputProps) => {
 
   return (
     <View>
-      {label && <Text>label</Text>}
+      {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         {...rest}
         style={styles.input}
@@ -35,6 +35,10 @@ const useStyles = getStylesHook<boolean>((theme, isFullBordered) => ({
     fontSize: 16,
     paddingLeft: isFullBordered ? 10 : 0,
     paddingTop: 20,
+  },
+  label: {
+    textTransform: 'capitalize',
+    marginTop: 27,
   },
 }));
 export default Input;

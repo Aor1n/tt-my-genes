@@ -6,6 +6,7 @@ import LoginScreen from '../../screens/login/LoginScreen.tsx';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types.ts';
 import RootBottomTabs from '../tabs/RootBottomTabs.tsx';
+import ExpenseScreen from '../../screens/expense/ExpenseScreen.tsx';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,6 +18,13 @@ const AppStack = () => (
       }}>
       <Stack.Screen name={SCREEN.LOGIN} component={LoginScreen} />
       <Stack.Screen name={SCREEN.ROOT_BOTTOM_TABS} component={RootBottomTabs} />
+      <Stack.Screen
+        name={SCREEN.EXPENSE_MODAL}
+        component={ExpenseScreen}
+        options={{
+          presentation: 'modal',
+        }}
+      />
     </Stack.Navigator>
   </NavigationContainer>
 );

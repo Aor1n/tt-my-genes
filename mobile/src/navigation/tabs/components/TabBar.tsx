@@ -7,10 +7,20 @@ import {SCREEN} from '../../consts.ts';
 import IS_IOS from '../../../consts/IS_IOS.ts';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import PlusIcon from '../../../assets/icons/plus.svg';
+import {useNavigation} from '@react-navigation/native';
+import {useCbOnce} from '../../../hooks/useCbOnce.ts';
 
 const TabBar = ({index}: {index: BottomTabBarProps['state']['index']}) => {
   const {bottom: bottomInsert} = useSafeAreaInsets();
   const {styles} = useStyles(bottomInsert);
+  const {navigate} = useNavigation();
+
+  const onPress = useCbOnce(() => {
+    navigate({
+      name: SCREEN.EXPENSE_MODAL,
+      params: {id: undefined},
+    });
+  });
 
   return (
     <View style={styles.container}>
@@ -21,7 +31,10 @@ const TabBar = ({index}: {index: BottomTabBarProps['state']['index']}) => {
         }}
         index={index}
       />
-      <TouchableOpacity style={styles.plusContainer} activeOpacity={0.8}>
+      <TouchableOpacity
+        style={styles.plusContainer}
+        activeOpacity={0.8}
+        onPress={onPress}>
         <PlusIcon width={32} height={32} />
       </TouchableOpacity>
       <TabItem

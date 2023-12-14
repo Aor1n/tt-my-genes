@@ -16,7 +16,7 @@ interface CustomTheme extends Omit<Theme, 'colors'> {
   };
 }
 
-const theme: CustomTheme = {
+const theme: CustomTheme & Theme = {
   ...DefaultTheme,
   dark: false,
   colors: {

@@ -8,8 +8,7 @@ import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 export type RootStackParamList = {
   [SCREEN.ROOT_BOTTOM_TABS]: undefined;
   [SCREEN.LOGIN]: undefined;
-  [SCREEN.EDIT_EXPENSE_MODAL]: {id: string};
-  [SCREEN.CREATE_EXPENSE_MODAL]: undefined;
+  [SCREEN.EXPENSE_MODAL]: {id?: string};
 };
 
 export type RootTabsStackParamList = {
