@@ -3,7 +3,7 @@ import DatePicker from 'react-native-date-picker';
 import {TouchableOpacity, View} from 'react-native';
 import {FieldValues, Path, useController, UseFormReturn} from 'react-hook-form';
 import {format} from 'date-fns';
-import Input, {InputProps} from 'components/Input.tsx';
+import Input, {InputProps} from 'components/inputs/Input.tsx';
 import {DD_MM_YYYY} from 'consts/FORMAT.ts';
 
 type DatePickerInputProps<T extends FieldValues> = {

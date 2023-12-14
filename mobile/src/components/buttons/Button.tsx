@@ -3,7 +3,7 @@ import React from 'react';
 import {ActivityIndicator, Text, View} from 'react-native';
 import TouchableScaleView, {
   TouchableScaleViewProps,
-} from 'components/TouchableScaleView.tsx';
+} from 'components/containers/TouchableScaleView.tsx';
 import getStylesHook from 'helpers/getStylesHook.ts';
 
 interface ButtonProps extends TouchableScaleViewProps {

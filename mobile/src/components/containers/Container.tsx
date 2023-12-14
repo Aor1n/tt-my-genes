@@ -3,7 +3,7 @@ import {SafeAreaView, SafeAreaViewProps} from 'react-native-safe-area-context';
 import getStylesHook from 'helpers/getStylesHook.ts';
 
 interface ContainerProps extends PropsWithChildren {
-  style: SafeAreaViewProps['style'];
+  style?: SafeAreaViewProps['style'];
 }
 
 const Container = ({children, style}: ContainerProps) => {
