@@ -1,9 +1,9 @@
+import {FC} from 'react';
 import type {RouteProp} from '@react-navigation/native';
 import type {StackNavigationProp} from '@react-navigation/stack';
-import {SCREEN} from './consts.ts';
-import {FC} from 'react';
 import {CompositeNavigationProp} from '@react-navigation/native';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import {SCREEN} from 'navigation/consts.ts';
 
 export type RootStackParamList = {
   [SCREEN.ROOT_BOTTOM_TABS]: undefined;

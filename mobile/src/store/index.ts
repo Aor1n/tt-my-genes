@@ -1,9 +1,9 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {profilePersistConfig, profileSlice} from './reducers/profile.ts';
-import {appPersistConfig, appSlice} from './reducers/app.ts';
-import {SLICE_KEY} from './consts.ts';
+import {profilePersistConfig, profileSlice} from 'store/reducers/profile.ts';
+import {appPersistConfig, appSlice} from 'store/reducers/app.ts';
+import {SLICE_KEY} from 'store/consts.ts';
 
 const rootPersistConfig = {
   key: SLICE_KEY.ROOT,

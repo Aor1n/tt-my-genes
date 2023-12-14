@@ -1,2 +1,2 @@
-export {appSlice} from './app.ts';
-export {profileSlice} from './profile.ts';
+export {appSlice} from 'store/reducers/app.ts';
+export {profileSlice} from 'store/reducers/profile.ts';

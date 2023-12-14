@@ -1,12 +1,12 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {theme} from '../../styles/theme.ts';
-import {SCREEN} from '../consts.ts';
-import LoginScreen from '../../screens/login/LoginScreen.tsx';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../types.ts';
-import RootBottomTabs from '../tabs/RootBottomTabs.tsx';
-import ExpenseScreen from '../../screens/expense/ExpenseScreen.tsx';
+import {RootStackParamList} from 'navigation/types.ts';
+import {theme} from 'styles/theme.ts';
+import {SCREEN} from 'navigation/consts.ts';
+import LoginScreen from 'screens/login/LoginScreen.tsx';
+import RootBottomTabs from 'navigation/tabs/RootBottomTabs.tsx';
+import ExpenseScreen from 'screens/expense/ExpenseScreen.tsx';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

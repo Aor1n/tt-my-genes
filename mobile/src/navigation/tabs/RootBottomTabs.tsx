@@ -1,13 +1,13 @@
 import React from 'react';
-import {RootStackComponent, RootTabsStackParamList} from '../types.ts';
-import {SCREEN} from '../consts.ts';
-import HomeScreen from '../../screens/home/HomeScreen.tsx';
-import ProfileScreen from '../../screens/profile/ProfileScreen.tsx';
 import {
   BottomTabBarProps,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import TabBar from './components/TabBar.tsx';
+import {RootStackComponent, RootTabsStackParamList} from 'navigation/types.ts';
+import TabBar from 'navigation/tabs/components/TabBar.tsx';
+import {SCREEN} from 'navigation/consts.ts';
+import HomeScreen from 'screens/home/HomeScreen.tsx';
+import ProfileScreen from 'screens/profile/ProfileScreen.tsx';
 
 const RootTabsStack = createBottomTabNavigator<RootTabsStackParamList>();
 

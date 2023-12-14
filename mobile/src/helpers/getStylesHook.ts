@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {useMemo} from 'react';
-import {CustomTheme} from '../styles/theme.ts';
-import useCustomTheme from '../hooks/useCustomTheme.ts';
+import {CustomTheme} from 'styles/theme.ts';
+import useCustomTheme from 'hooks/useCustomTheme.ts';
 
 type StyleSheetInfer = ReturnType<typeof StyleSheet.create>;
 

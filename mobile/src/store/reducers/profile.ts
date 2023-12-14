@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {SLICE_KEY} from '../consts.ts';
+import {SLICE_KEY} from 'store/consts.ts';
 
 const state = {
   fullName: '',

@@ -1,14 +1,14 @@
 import React from 'react';
 import {Dimensions, TouchableOpacity, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {TabItem} from './TabItem.tsx';
-import getStylesHook from '../../../helpers/getStylesHook.ts';
-import {SCREEN} from '../../consts.ts';
-import IS_IOS from '../../../consts/IS_IOS.ts';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import PlusIcon from '../../../assets/icons/plus.svg';
 import {useNavigation} from '@react-navigation/native';
-import {useCbOnce} from '../../../hooks/useCbOnce.ts';
+import {useCbOnce} from 'hooks/useCbOnce.ts';
+import {SCREEN} from 'navigation/consts.ts';
+import {TabItem} from 'navigation/tabs/components/TabItem.tsx';
+import PlusIcon from 'assets/icons/plus.svg';
+import getStylesHook from 'helpers/getStylesHook.ts';
+import IS_IOS from 'consts/IS_IOS.ts';
 
 const TabBar = ({index}: {index: BottomTabBarProps['state']['index']}) => {
   const {bottom: bottomInsert} = useSafeAreaInsets();

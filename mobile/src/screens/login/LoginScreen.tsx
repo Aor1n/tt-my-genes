@@ -1,12 +1,11 @@
 import React from 'react';
-import {RootStackComponent} from '../../navigation/types.ts';
-import {SCREEN} from '../../navigation/consts.ts';
 import {useNavigation} from '@react-navigation/native';
-import Button from '../../components/Button.tsx';
 import {View} from 'react-native';
-import getStylesHook from '../../helpers/getStylesHook.ts';
-import Container from '../../components/Container.tsx';
-import Input from '../../components/Input.tsx';
+import {RootStackComponent} from 'navigation/types.ts';
+import {SCREEN} from 'navigation/consts.ts';
+import Container from 'components/Container.tsx';
+import Button from 'components/Button.tsx';
+import getStylesHook from 'helpers/getStylesHook.ts';
 
 const LoginScreen: RootStackComponent<typeof SCREEN.LOGIN> = () => {
   const {navigate} = useNavigation();

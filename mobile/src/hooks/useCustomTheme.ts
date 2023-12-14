@@ -1,5 +1,5 @@
 import {useTheme} from '@react-navigation/native';
-import {CustomTheme} from '../styles/theme.ts';
+import {CustomTheme} from 'styles/theme.ts';
 
 const useCustomTheme = () => {
   const theme = useTheme();

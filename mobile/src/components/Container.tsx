@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from 'react';
 import {SafeAreaView, SafeAreaViewProps} from 'react-native-safe-area-context';
-import getStylesHook from '../helpers/getStylesHook.ts';
+import getStylesHook from 'helpers/getStylesHook.ts';
 
 interface ContainerProps extends PropsWithChildren {
   style: SafeAreaViewProps['style'];

@@ -1,11 +1,12 @@
 import React from 'react';
-import {RootStackComponent} from '../../navigation/types.ts';
-import {SCREEN} from '../../navigation/consts.ts';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import getStylesHook from '../../helpers/getStylesHook.ts';
-import CloseIcon from '../../assets/icons/cross.svg';
-import ExpenseForm from '../../forms/expense/ExpenseForm.tsx';
+import {RootStackComponent} from 'navigation/types.ts';
+import {SCREEN} from 'navigation/consts.ts';
+import ExpenseForm from 'forms/expense/ExpenseForm.tsx';
+import CloseIcon from 'assets/icons/cross.svg';
+import getStylesHook from 'helpers/getStylesHook.ts';
+
 const ExpenseScreen: RootStackComponent<
   typeof SCREEN.EXPENSE_MODAL
 > = props => {

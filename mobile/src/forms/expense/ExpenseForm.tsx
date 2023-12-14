@@ -1,10 +1,10 @@
 import React, {PropsWithChildren} from 'react';
 import {Text, View} from 'react-native';
-import useExpenseForm from './useExpenseForm.ts';
-import Input from '../../components/Input.tsx';
-import Button from '../../components/Button.tsx';
-import getStylesHook from '../../helpers/getStylesHook.ts';
-import DatePickerInput from '../../components/DatePickerInput.tsx';
+import useExpenseForm from 'forms/expense/useExpenseForm.ts';
+import Input from 'components/Input.tsx';
+import DatePickerInput from 'components/DatePickerInput.tsx';
+import Button from 'components/Button.tsx';
+import getStylesHook from 'helpers/getStylesHook.ts';
 
 interface ExpenseFormProps extends PropsWithChildren {
   id?: string;
