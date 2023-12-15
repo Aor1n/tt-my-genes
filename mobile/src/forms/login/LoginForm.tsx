@@ -17,6 +17,7 @@ const LoginForm = () => {
   const {form, handleSubmit} = useLoginForm({
     onSuccessfulSubmit: () => {
       dispatch(setFullName(form.watch('fullName')));
+      form.reset();
       navigate(SCREEN.ROOT_BOTTOM_TABS);
     },
   });
