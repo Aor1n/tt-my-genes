@@ -12,6 +12,7 @@ interface CustomTheme extends Omit<Theme, 'colors'> {
     text: '#3E3E3E';
     textInverted: '#FFFFFF';
     textPlaceholder: '#AAA9C0';
+    chip: '#D9D9D9';
     border: '#BFBFBF';
     divider: '#e8e7e7';
   };
@@ -32,6 +33,7 @@ const theme: CustomTheme & Theme = {
     text: '#3E3E3E',
     textInverted: '#FFFFFF',
     textPlaceholder: '#AAA9C0',
+    chip: '#D9D9D9',
     border: '#BFBFBF',
     divider: '#e8e7e7',
   },
