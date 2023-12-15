@@ -4,11 +4,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {profilePersistConfig, profileSlice} from 'store/reducers/profile.ts';
 import {appPersistConfig, appSlice} from 'store/reducers/app.ts';
 import {SLICE_KEY} from 'store/consts.ts';
+import {expensesPersistConfig, expensesSlice} from 'store/reducers/expenses.ts';
 
 const rootPersistConfig = {
   key: SLICE_KEY.ROOT,
   storage: AsyncStorage,
-  blacklist: Object.values(SLICE_KEY),
 };
 
 const rootReducer = combineReducers({
@@ -16,6 +16,10 @@ const rootReducer = combineReducers({
   [SLICE_KEY.PROFILE]: persistReducer(
     profilePersistConfig,
     profileSlice.reducer,
+  ),
+  [SLICE_KEY.EXPENSES]: persistReducer(
+    expensesPersistConfig,
+    expensesSlice.reducer,
   ),
 });
 
