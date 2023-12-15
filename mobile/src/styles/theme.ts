@@ -8,6 +8,7 @@ interface CustomTheme extends Omit<Theme, 'colors'> {
     black: '#000000';
     white: '#FFFFFF';
     grey: '#696969';
+    beige: '#F4EEEE';
     bg: '#fcfbfc';
     text: '#3E3E3E';
     textInverted: '#FFFFFF';
@@ -29,6 +30,7 @@ const theme: CustomTheme & Theme = {
     black: '#000000',
     white: '#FFFFFF',
     grey: '#696969',
+    beige: '#F4EEEE',
     bg: '#fcfbfc',
     text: '#3E3E3E',
     textInverted: '#FFFFFF',

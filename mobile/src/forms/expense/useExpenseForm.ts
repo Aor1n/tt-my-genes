@@ -3,15 +3,15 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {z} from 'zod';
 
 const expenseSchema = z.object({
+  id: z.string().uuid().nullish(),
   title: z.string().min(2).max(20).trim(),
   amount: z.union([z.string(), z.number()]).pipe(z.coerce.number()),
-  date: z.coerce.date(),
+  date: z.union([z.coerce.date(), z.string()]),
 });
 
-type Expense = z.infer<typeof expenseSchema>;
+export type Expense = z.infer<typeof expenseSchema>;
 
 interface UseExpenseProps {
-  id?: string;
   expense?: Expense;
   onSuccessfulSubmit: () => void;
 }
@@ -22,7 +22,6 @@ interface UseExpenseReturn {
 }
 
 export default function useExpenseForm({
-  id,
   expense,
   onSuccessfulSubmit,
 }: UseExpenseProps): UseExpenseReturn {
@@ -31,7 +30,7 @@ export default function useExpenseForm({
   };
 
   const form = useForm<Expense>({
-    defaultValues: id ? expense : defaultValues,
+    defaultValues: expense?.id ? expense : defaultValues,
     mode: 'onChange',
     resolver: zodResolver(expenseSchema),
   });

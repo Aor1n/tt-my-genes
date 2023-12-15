@@ -24,6 +24,7 @@ const Filters = () => {
 const useStyles = getStylesHook(_ => ({
   container: {
     marginTop: 30,
+    marginBottom: 12,
     paddingHorizontal: 13,
   },
   totalExpenses: {
@@ -36,6 +37,7 @@ const useStyles = getStylesHook(_ => ({
   filtersText: {
     fontSize: 12,
     fontWeight: '700',
+    marginLeft: 11,
   },
 }));
 

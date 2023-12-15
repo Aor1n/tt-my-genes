@@ -5,6 +5,7 @@ import {SCREEN} from 'navigation/consts.ts';
 import Container from 'components/containers/Container.tsx';
 import getStylesHook from 'helpers/getStylesHook.ts';
 import Filters from 'screens/home/components/Filters.tsx';
+import ExpensesList from 'screens/home/components/ExpensesList/ExpensesList.tsx';
 
 const HomeScreen: RootStackComponent<typeof SCREEN.HOME> = () => {
   const {styles} = useStyles();
@@ -13,6 +14,7 @@ const HomeScreen: RootStackComponent<typeof SCREEN.HOME> = () => {
     <View style={styles.wrapper}>
       <Container>
         <Filters />
+        <ExpensesList />
       </Container>
     </View>
   );
