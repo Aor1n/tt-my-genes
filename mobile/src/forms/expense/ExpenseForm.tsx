@@ -13,6 +13,7 @@ interface ExpenseFormProps extends PropsWithChildren {
 const ExpenseForm = ({id, children}: ExpenseFormProps) => {
   const {styles} = useStyles();
   const {form, handleSubmit} = useExpenseForm({
+    id,
     onSuccessfulSubmit: () => {},
   });
 

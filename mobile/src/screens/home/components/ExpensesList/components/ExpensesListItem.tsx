@@ -5,6 +5,10 @@ import React from 'react';
 import {Expense} from 'forms/expense/useExpenseForm.ts';
 import getStylesHook from 'helpers/getStylesHook.ts';
 import RemoveIcon from 'assets/icons/cross.svg';
+import useNetwork from 'hooks/useNetwork.ts';
+import {useCbOnce} from 'hooks/useCbOnce.ts';
+import {useNavigation} from '@react-navigation/native';
+import {SCREEN} from 'navigation/consts.ts';
 
 export interface ParsedExpense extends Expense {
   isSkippedDate: boolean;
@@ -14,6 +18,17 @@ export interface ParsedExpense extends Expense {
 const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
   const isBorderBottom = !item.isSkippedDate && !item.isLastItem;
   const {styles} = useStyles(isBorderBottom);
+  const {deleteExpense} = useNetwork();
+  const {navigate} = useNavigation();
+
+  const onEditPress = useCbOnce(_ =>
+    navigate({
+      name: SCREEN.EXPENSE_MODAL,
+      params: {id: item.id!},
+    }),
+  );
+
+  const onRemovePress = useCbOnce(_ => deleteExpense(item.id));
 
   return (
     <View style={styles.container}>
@@ -22,17 +37,15 @@ const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
           <Text>{format(new Date(item.date), DD_MM_YYYY)}</Text>
         </View>
       )}
-      <View style={styles.innerContainer}>
-        <TouchableOpacity
-          onPress={() => console.log(item.id)}
-          style={styles.removeIcon}>
+      <TouchableOpacity style={styles.innerContainer} onPress={onEditPress}>
+        <TouchableOpacity onPress={onRemovePress} style={styles.removeIcon}>
           <RemoveIcon />
         </TouchableOpacity>
         <Text style={styles.title}>{item.title}</Text>
         <View style={styles.amountContainer}>
           <Text>${item.amount}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -63,15 +76,16 @@ const useStyles = getStylesHook<boolean>((theme, isBorderBottom) => ({
     shadowOpacity: 0.12,
     shadowRadius: 4,
     elevation: 4,
-    marginTop: 12,
-    paddingBottom: 12,
-    paddingHorizontal: 16,
+    marginTop: 10,
+    paddingBottom: 10,
+    paddingRight: 16,
+    paddingLeft: 14,
   },
   removeIcon: {
-    padding: 4,
+    padding: 6,
   },
   title: {
-    marginLeft: 30,
+    marginLeft: 28,
   },
   amountContainer: {
     flex: 1,

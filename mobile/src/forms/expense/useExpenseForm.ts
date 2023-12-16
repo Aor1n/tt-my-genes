@@ -1,6 +1,7 @@
 import {useForm, UseFormHandleSubmit, UseFormReturn} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {z} from 'zod';
+import useFillEditForm from 'forms/expense/useFillEditForm.ts';
 
 const expenseSchema = z.object({
   id: z.string().uuid().nullish(),
@@ -12,7 +13,7 @@ const expenseSchema = z.object({
 export type Expense = z.infer<typeof expenseSchema>;
 
 interface UseExpenseProps {
-  expense?: Expense;
+  id: Expense['id'];
   onSuccessfulSubmit: () => void;
 }
 
@@ -22,7 +23,7 @@ interface UseExpenseReturn {
 }
 
 export default function useExpenseForm({
-  expense,
+  id,
   onSuccessfulSubmit,
 }: UseExpenseProps): UseExpenseReturn {
   const defaultValues = {
@@ -30,10 +31,12 @@ export default function useExpenseForm({
   };
 
   const form = useForm<Expense>({
-    defaultValues: expense?.id ? expense : defaultValues,
+    defaultValues,
     mode: 'onChange',
     resolver: zodResolver(expenseSchema),
   });
+
+  useFillEditForm({id: id!, form});
 
   const handleSubmit = async (formValues: Expense) => {
     try {
