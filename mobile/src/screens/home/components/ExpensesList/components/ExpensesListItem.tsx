@@ -6,7 +6,7 @@ import {Expense} from 'forms/expense/useExpenseForm.ts';
 import getStylesHook from 'helpers/getStylesHook.ts';
 import RemoveIcon from 'assets/icons/cross.svg';
 
-interface ParsedExpense extends Expense {
+export interface ParsedExpense extends Expense {
   isSkippedDate: boolean;
   isLastItem: boolean;
 }
@@ -30,15 +30,18 @@ const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
         </TouchableOpacity>
         <Text style={styles.title}>{item.title}</Text>
         <View style={styles.amountContainer}>
-          <Text style={styles.amount}>${item.amount}</Text>
+          <Text>${item.amount}</Text>
         </View>
       </View>
     </View>
   );
 };
 
+export const EXPENSE_ITEM_LIST_HEIGHT = 74;
+
 const useStyles = getStylesHook<boolean>((theme, isBorderBottom) => ({
   container: {
+    maxHeight: EXPENSE_ITEM_LIST_HEIGHT,
     backgroundColor: theme.colors.white,
   },
   dateContainer: {
@@ -74,7 +77,6 @@ const useStyles = getStylesHook<boolean>((theme, isBorderBottom) => ({
     flex: 1,
     alignItems: 'flex-end',
   },
-  amount: {},
 }));
 
 export default ExpensesListItem;

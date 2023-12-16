@@ -1,9 +1,8 @@
 import {useForm, UseFormHandleSubmit, UseFormReturn} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {z} from 'zod';
-import {useAppDispatch} from 'store/hooks.ts';
-import {setFilters} from 'store/actions/global.ts';
 import {formatISO} from 'date-fns/fp';
+import useExpenses from 'hooks/query/useExpenses.ts';
 
 const filtersSchema = z.object({
   title: z.string().min(2).max(20).trim(),
@@ -33,15 +32,19 @@ export default function useFiltersForm({
     resolver: zodResolver(filtersSchema),
   });
 
-  const dispatch = useAppDispatch();
+  const {fetchExpenses} = useExpenses();
 
-  const handleSubmit = (formValues: Filter) => {
+  const handleSubmit = async (formValues: Filter) => {
     const values = {
       ...formValues,
       date: formatISO(formValues.date as Date),
     };
-    dispatch(setFilters(values));
-    onSuccessfulSubmit();
+    try {
+      await fetchExpenses(values);
+      onSuccessfulSubmit();
+    } catch (e) {
+      //
+    }
   };
 
   return {

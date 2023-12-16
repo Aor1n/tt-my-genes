@@ -9,6 +9,7 @@ import {expensesPersistConfig, expensesSlice} from 'store/reducers/expenses.ts';
 const rootPersistConfig = {
   key: SLICE_KEY.ROOT,
   storage: AsyncStorage,
+  blacklist: [SLICE_KEY.EXPENSES],
 };
 
 const rootReducer = combineReducers({

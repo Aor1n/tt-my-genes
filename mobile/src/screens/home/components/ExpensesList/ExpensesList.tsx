@@ -1,31 +1,26 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {FlatList} from 'react-native';
-import {useAppSelector} from 'store/hooks.ts';
-
-import ExpensesListItem from 'screens/home/components/ExpensesList/components/ExpensesListItem.tsx';
+import ExpensesListItem, {
+  ParsedExpense,
+} from 'screens/home/components/ExpensesList/components/ExpensesListItem.tsx';
+import useUIExpenses from 'screens/home/components/ExpensesList/hooks/useUIExpenses.ts';
+import {useCbOnce} from 'hooks/useCbOnce.ts';
 
 const ExpensesList = () => {
-  const expenses = useAppSelector(state => state.expenses.items);
+  const uiExpenses = useUIExpenses();
 
-  // todo replace to its own hook
-  const newExpenses = useMemo(
-    () =>
-      expenses.map((expense, index) => {
-        const isSkippedDate = expenses[index - 1]?.date === expense.date;
-        const isLastItem = !expenses.at(index + 1);
-        return {
-          ...expense,
-          isSkippedDate,
-          isLastItem,
-        };
-      }),
-    [expenses],
-  );
+  const RenderExpensesListItem = useCbOnce(({item}: {item: ParsedExpense}) => {
+    return <ExpensesListItem item={item} />;
+  });
 
   return (
     <FlatList
-      data={newExpenses}
-      renderItem={({item}) => <ExpensesListItem item={item} />}
+      data={uiExpenses}
+      keyExtractor={item => item.id!.toString()}
+      renderItem={RenderExpensesListItem}
+      initialNumToRender={10}
+      updateCellsBatchingPeriod={1000}
+      maxToRenderPerBatch={12}
     />
   );
 };

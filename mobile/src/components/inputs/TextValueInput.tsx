@@ -13,7 +13,7 @@ const TextValueInput = ({text, value}: TextValueInputProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{text}</Text>
-      {value && <Text style={styles.value}>{value}</Text>}
+      {!!value && <Text style={styles.value}>{value}</Text>}
     </View>
   );
 };
