@@ -6,11 +6,11 @@ interface ChipProps extends PropsWithChildren {
   onPress: TouchableOpacityProps['onPress'];
 }
 
-const Chip = ({children}: ChipProps) => {
+const Chip = ({children, ...props}: ChipProps) => {
   const {styles} = useStyles();
 
   return (
-    <TouchableOpacity activeOpacity={0.5} style={styles.container}>
+    <TouchableOpacity activeOpacity={0.5} style={styles.container} {...props}>
       {children}
     </TouchableOpacity>
   );

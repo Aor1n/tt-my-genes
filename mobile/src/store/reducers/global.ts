@@ -12,7 +12,11 @@ export const globalSlice = createSlice({
   initialState,
   reducers: {
     setFilters: (state, {payload}) => {
-      state.filters = payload;
+      const query = Object.entries(payload)
+        .map(([key, value]) => `${key}=${value}`)
+        .join('&');
+
+      state.filters = query;
     },
     setIsModalShown: (state, {payload}) => {
       state.isModalShown = payload;

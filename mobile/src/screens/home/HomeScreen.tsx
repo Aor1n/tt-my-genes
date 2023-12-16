@@ -4,7 +4,7 @@ import {RootStackComponent} from 'navigation/types.ts';
 import {SCREEN} from 'navigation/consts.ts';
 import Container from 'components/containers/Container.tsx';
 import getStylesHook from 'helpers/getStylesHook.ts';
-import Filters from 'screens/home/components/Filters.tsx';
+import Filters from 'screens/home/components/Filters/Filters.tsx';
 import ExpensesList from 'screens/home/components/ExpensesList/ExpensesList.tsx';
 
 const HomeScreen: RootStackComponent<typeof SCREEN.HOME> = () => {

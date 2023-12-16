@@ -15,7 +15,7 @@ const TabBar = ({index}: {index: BottomTabBarProps['state']['index']}) => {
   const {styles} = useStyles(bottomInsert);
   const {navigate} = useNavigation();
 
-  const onPress = useCbOnce(() => {
+  const onPress = useCbOnce(_ => {
     navigate({
       name: SCREEN.EXPENSE_MODAL,
       params: {id: undefined},
