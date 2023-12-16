@@ -8,7 +8,9 @@ module.exports = {
         alias: {
           test: './test',
         },
+        extensions: ['.tsx', '.ts', '.js', '.json'],
       },
     ],
+    'react-native-reanimated/plugin', // has to be listed last.
   ],
 };
