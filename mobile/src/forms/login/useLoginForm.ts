@@ -28,9 +28,18 @@ export default function useLoginForm({
     resolver: zodResolver(loginSchema),
   });
 
-  const handleSubmit = async (formValues: Login) => {
+  const handleSubmit = (formValues: Login) => {
+    const isFullName = formValues.fullName.split(' ').length !== 2;
+
     try {
-      console.log('formValues', formValues);
+      if (isFullName) {
+        form.setError('fullName', {
+          message: "Enter full name. Example: 'John Doe'",
+        });
+
+        return;
+      }
+
       onSuccessfulSubmit();
     } catch (e) {
       //

@@ -28,7 +28,7 @@ const Filters = () => {
 
 const useStyles = getStylesHook(_ => ({
   container: {
-    marginTop: 30,
+    marginTop: 10,
     marginBottom: 12,
     paddingHorizontal: 13,
   },

@@ -7,6 +7,7 @@ import getStylesHook from 'helpers/getStylesHook.ts';
 import Filters from 'screens/home/components/Filters/Filters.tsx';
 import ExpensesList from 'screens/home/components/ExpensesList/ExpensesList.tsx';
 import useExpenses from 'hooks/query/useExpenses.ts';
+import ProfileName from 'screens/home/components/ProfileName.tsx';
 
 const HomeScreen: RootStackComponent<typeof SCREEN.HOME> = () => {
   const {styles} = useStyles();
@@ -14,6 +15,7 @@ const HomeScreen: RootStackComponent<typeof SCREEN.HOME> = () => {
 
   return (
     <View style={styles.wrapper}>
+      <ProfileName />
       <Container>
         <Filters />
         <ExpensesList />
