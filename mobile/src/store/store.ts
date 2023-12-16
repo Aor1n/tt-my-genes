@@ -2,7 +2,7 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {profilePersistConfig, profileSlice} from 'store/reducers/profile.ts';
-import {appPersistConfig, appSlice} from 'store/reducers/app.ts';
+import {globalPersistConfig, globalSlice} from 'store/reducers/global.ts';
 import {SLICE_KEY} from 'store/consts.ts';
 import {expensesPersistConfig, expensesSlice} from 'store/reducers/expenses.ts';
 
@@ -12,7 +12,7 @@ const rootPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  [SLICE_KEY.APP]: persistReducer(appPersistConfig, appSlice.reducer),
+  [SLICE_KEY.GLOBAL]: persistReducer(globalPersistConfig, globalSlice.reducer),
   [SLICE_KEY.PROFILE]: persistReducer(
     profilePersistConfig,
     profileSlice.reducer,

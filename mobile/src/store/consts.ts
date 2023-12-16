@@ -1,6 +1,6 @@
 export enum SLICE_KEY {
   ROOT = 'root',
-  APP = 'app',
+  GLOBAL = 'global',
   PROFILE = 'profile',
   EXPENSES = 'expenses',
 }

@@ -4,20 +4,24 @@ import {SLICE_KEY} from 'store/consts.ts';
 
 const initialState = {
   filters: '',
+  isModalShown: false,
 };
 
-export const appSlice = createSlice({
-  name: SLICE_KEY.APP,
+export const globalSlice = createSlice({
+  name: SLICE_KEY.GLOBAL,
   initialState,
   reducers: {
     setFilters: (state, {payload}) => {
       state.filters = payload;
     },
+    setIsModalShown: (state, {payload}) => {
+      state.isModalShown = payload;
+    },
   },
 });
 
-export const appPersistConfig = {
-  key: SLICE_KEY.APP,
+export const globalPersistConfig = {
+  key: SLICE_KEY.GLOBAL,
   storage: AsyncStorage,
   whitelist: [],
   blacklist: [],
