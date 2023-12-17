@@ -9,11 +9,11 @@ const useUIExpenses = () => {
     () =>
       expenses?.map((expense, index) => {
         const isSkippedDate = expenses[index - 1]?.date === expense.date;
-        const isLastItem = !expenses.at(index + 1);
+        const isBorderBottom = expenses[index + 1]?.date === expense.date;
         return {
           ...expense,
           isSkippedDate,
-          isLastItem,
+          isBorderBottom,
         };
       }),
     [expenses],

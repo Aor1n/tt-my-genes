@@ -12,12 +12,11 @@ import {SCREEN} from 'navigation/consts.ts';
 
 export interface ParsedExpense extends Expense {
   isSkippedDate: boolean;
-  isLastItem: boolean;
+  isBorderBottom: boolean;
 }
 
 const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
-  const isBorderBottom = !item.isSkippedDate && !item.isLastItem;
-  const {styles} = useStyles(isBorderBottom);
+  const {styles} = useStyles(item.isBorderBottom);
   const {deleteExpense} = useNetwork();
   const {navigate} = useNavigation();
 
