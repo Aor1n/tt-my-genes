@@ -40,11 +40,7 @@ const ExpenseForm = ({expense, children}: ExpenseFormProps) => {
           keyboardType={'numeric'}
         />
 
-        <DatePickerInput
-          form={form}
-          name={'date'}
-          {...{[id ? 'label' : 'placeholder']: 'Date'}}
-        />
+        {id && <DatePickerInput form={form} name={'date'} label={'Date'} />}
       </View>
 
       <View style={styles.button}>

@@ -1,4 +1,4 @@
-import ky, {type Options, type SearchParamsOption} from 'ky';
+import ky, {HTTPError, type Options, type SearchParamsOption} from 'ky';
 import {Expense} from 'forms/expense/useExpenseForm.ts';
 import {notify} from 'utils/notify.ts';
 
@@ -17,12 +17,13 @@ const useNetwork = () => {
     method?: Options['method'];
   } & Options): Promise<TReturn> => {
     try {
-      const response: TReturn = await ky(`${apiUrl}/${path}`, options).json();
+      const response: TReturn = await ky(`${apiUrl}/${path}/`, options).json();
       return response;
     } catch (e) {
+      const error = e as HTTPError;
       notify({
         type: 'error',
-        description: 'Backend is not ready yet',
+        description: error.message,
       });
 
       throw new Error();

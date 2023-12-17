@@ -5,20 +5,22 @@ import React from 'react';
 import {Expense} from 'forms/expense/useExpenseForm.ts';
 import getStylesHook from 'utils/getStylesHook.ts';
 import RemoveIcon from 'assets/icons/cross.svg';
-import useNetwork from 'hooks/useNetwork.ts';
 import {useCbOnce} from 'hooks/useCbOnce.ts';
 import {useNavigation} from '@react-navigation/native';
 import {SCREEN} from 'navigation/consts.ts';
+import useHandleExpenseRemove from 'screens/home/components/ExpensesList/components/useHandleExpenseRemove.ts';
 
 export interface ParsedExpense extends Expense {
+  isFirstDate: boolean;
   isSkippedDate: boolean;
   isBorderBottom: boolean;
 }
 
 const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
   const {styles} = useStyles(item.isBorderBottom);
-  const {deleteExpense} = useNetwork();
   const {navigate} = useNavigation();
+
+  const onRemovePress = useHandleExpenseRemove(item.id!);
 
   const onEditPress = useCbOnce(_ =>
     navigate({
@@ -27,11 +29,9 @@ const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
     }),
   );
 
-  const onRemovePress = useCbOnce(_ => deleteExpense(item.id));
-
   return (
     <View style={styles.container}>
-      {!item.isSkippedDate && (
+      {(item.isFirstDate || !item.isSkippedDate) && (
         <View style={styles.dateContainer}>
           <Text>{format(new Date(item.date), DD_MM_YYYY)}</Text>
         </View>

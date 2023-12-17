@@ -8,31 +8,31 @@ import {useAppModalSelector} from 'hooks/selectors/useAppModalSelector.ts';
 import getStylesHook from 'utils/getStylesHook.ts';
 import CloseIcon from 'assets/icons/cross.svg';
 import {notify} from 'utils/notify.ts';
+import useHandleCleanPress from 'forms/filter/useHandleCleanPress.ts';
 
 const FiltersForm = () => {
   const {styles} = useStyles();
-  const {setIsModalShown} = useAppModalSelector();
+  const {hideModal} = useAppModalSelector();
   const {form, handleSubmit} = useFiltersForm({
     onSuccessfulSubmit: () => {
-      form.reset();
-      setIsModalShown(false);
+      hideModal();
       notify({
-        type: 'info',
-        description: 'Backend is not ready yet',
+        type: 'success',
+        description: 'Data was filtered',
       });
     },
   });
 
+  const onCleanPress = useHandleCleanPress({resetForm: form.reset});
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <TouchableOpacity onPress={() => form.reset()}>
+        <TouchableOpacity onPress={onCleanPress}>
           <Text style={styles.cleanText}>clean</Text>
         </TouchableOpacity>
         <Text style={styles.header}>Filters</Text>
-        <TouchableOpacity
-          style={styles.closeIcon}
-          onPress={() => setIsModalShown(false)}>
+        <TouchableOpacity style={styles.closeIcon} onPress={hideModal}>
           <CloseIcon width={20} height={20} />
         </TouchableOpacity>
       </View>

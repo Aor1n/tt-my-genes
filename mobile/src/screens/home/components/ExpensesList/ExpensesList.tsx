@@ -5,6 +5,7 @@ import ExpensesListItem, {
 } from 'screens/home/components/ExpensesList/components/ExpensesListItem.tsx';
 import useUIExpenses from 'screens/home/components/ExpensesList/hooks/useUIExpenses.ts';
 import {useCbOnce} from 'hooks/useCbOnce.ts';
+import ListEmptyComponent from 'screens/home/components/ExpensesList/components/ListEmptyComponent.tsx';
 
 const ExpensesList = () => {
   const uiExpenses = useUIExpenses();
@@ -21,6 +22,7 @@ const ExpensesList = () => {
       initialNumToRender={10}
       updateCellsBatchingPeriod={1000}
       maxToRenderPerBatch={12}
+      ListEmptyComponent={ListEmptyComponent}
     />
   );
 };

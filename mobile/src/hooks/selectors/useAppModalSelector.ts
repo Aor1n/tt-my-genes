@@ -9,5 +9,6 @@ export const useAppModalSelector = () => {
     isModalShown,
     toggleIsModalShown: () => dispatch(setIsModalShown(!isModalShown)),
     setIsModalShown: (b: boolean) => dispatch(setIsModalShown(b)),
+    hideModal: () => dispatch(setIsModalShown(false)),
   };
 };

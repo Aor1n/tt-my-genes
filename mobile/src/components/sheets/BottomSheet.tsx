@@ -12,7 +12,7 @@ const SNAP_POINTS = ['1%', '77%'];
 
 const BottomSheetScrollPanel = ({children}: PropsWithChildren) => {
   const {styles} = useStyles();
-  const {isModalShown, setIsModalShown} = useAppModalSelector();
+  const {isModalShown, hideModal} = useAppModalSelector();
 
   const ref = useRef<BottomSheetModal>(null);
 
@@ -22,9 +22,7 @@ const BottomSheetScrollPanel = ({children}: PropsWithChildren) => {
     }
   }, [isModalShown]);
 
-  const onClose = useCbOnce(() => {
-    setIsModalShown(false);
-  });
+  const onClose = useCbOnce(hideModal);
 
   const RenderBackdropComponent = useCbOnce(
     (props: BottomSheetBackdropProps) => {

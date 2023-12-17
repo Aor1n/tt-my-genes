@@ -4,6 +4,7 @@ import {z} from 'zod';
 import useFillEditForm from 'forms/expense/useFillEditForm.ts';
 import useNetwork from 'hooks/useNetwork.ts';
 import {notify} from 'utils/notify.ts';
+import useExpenses from 'hooks/query/useExpenses.ts';
 
 const expenseSchema = z.object({
   id: z.string().uuid().nullish(),
@@ -46,11 +47,16 @@ export default function useExpenseForm({
 
   useFillEditForm({expense, form});
 
+  const {fetchExpenses} = useExpenses();
+
   const handleSubmit = async (formValues: Expense) => {
     try {
       const isEditForm = !!expense?.id;
       if (isEditForm) {
-        await editExpense(formValues);
+        await editExpense({
+          id: expense?.id,
+          ...formValues,
+        });
       } else {
         await createExpense(formValues);
       }
@@ -60,6 +66,8 @@ export default function useExpenseForm({
         title: 'Success!',
         description: `Expense has been ${isEditForm ? 'edited' : 'created'}`,
       });
+
+      await fetchExpenses();
 
       onSuccessfulSubmit();
     } catch (e) {
