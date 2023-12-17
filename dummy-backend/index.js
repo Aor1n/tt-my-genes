@@ -1,20 +1,15 @@
 const express = require('express');
 const {get, create, edit, remove} = require("./services/expenses");
 const {getExpenses} = require("./data/getExpenses");
-const {makeGetSqlParams} = require("./helpers/makeQueryParams");
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
 app.get('/expenses', (req, res, next) => {
-    const {sql, params} = makeGetSqlParams({
-        sql: 'SELECT * FROM expense WHERE 1=1',
-        object: req.query
-    })
-
     try {
-        const data = get(sql, params)
+        const data = get(req.query)
+
         const response = getExpenses(data)
         res.json(response);
     } catch (err) {

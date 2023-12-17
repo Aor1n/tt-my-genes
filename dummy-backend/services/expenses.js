@@ -1,5 +1,5 @@
 const db = require('./db');
-const {makePutSqlParams} = require("../helpers/makeQueryParams");
+const {makePutSqlParams, makeGetSqlParams} = require("../helpers/makeQueryParams");
 
 function validateExpense(expense) {
     let messages = [];
@@ -20,6 +20,16 @@ function validateExpense(expense) {
 
         throw error;
     }
+}
+
+function get(query) {
+    const {sql, params} = makeGetSqlParams({
+        sql: 'SELECT * FROM expense WHERE 1=1',
+        object: query
+    })
+    const data = db.query(sql, params)
+
+    return data
 }
 
 function create(newExpense) {
@@ -76,7 +86,7 @@ function remove(id) {
 }
 
 module.exports = {
-    get: db.query,
+    get,
     create,
     edit,
     remove
