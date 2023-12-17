@@ -4,11 +4,12 @@ import type {StackNavigationProp} from '@react-navigation/stack';
 import {CompositeNavigationProp} from '@react-navigation/native';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {SCREEN} from 'navigation/consts.ts';
+import {Expense} from 'forms/expense/useExpenseForm.ts';
 
 export type RootStackParamList = {
   [SCREEN.ROOT_BOTTOM_TABS]: undefined;
   [SCREEN.LOGIN]: undefined;
-  [SCREEN.EXPENSE_MODAL]: {id?: string};
+  [SCREEN.EXPENSE_MODAL]: {expense?: Expense};
 };
 
 export type RootTabsStackParamList = {

@@ -13,7 +13,7 @@ const expenseSchema = z.object({
 export type Expense = z.infer<typeof expenseSchema>;
 
 interface UseExpenseProps {
-  id: Expense['id'];
+  expense?: Expense;
   onSuccessfulSubmit: () => void;
 }
 
@@ -23,7 +23,7 @@ interface UseExpenseReturn {
 }
 
 export default function useExpenseForm({
-  id,
+  expense,
   onSuccessfulSubmit,
 }: UseExpenseProps): UseExpenseReturn {
   const defaultValues = {
@@ -36,7 +36,7 @@ export default function useExpenseForm({
     resolver: zodResolver(expenseSchema),
   });
 
-  useFillEditForm({id: id!, form});
+  useFillEditForm({expense, form});
 
   const handleSubmit = async (formValues: Expense) => {
     try {

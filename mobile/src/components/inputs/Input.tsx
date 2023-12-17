@@ -35,6 +35,7 @@ const Input = <T extends FieldValues>({
         style={[styles.input, error ? styles.error : {}]}
         placeholderTextColor={colors.textPlaceholder}
         spellCheck={false}
+        defaultValue={rest.value ?? String(field.value)}
         value={rest.value ?? String(field.value)}
         onChangeText={field.onChange}
         onFocus={() => form.clearErrors(name)}

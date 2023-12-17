@@ -24,7 +24,7 @@ const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
   const onEditPress = useCbOnce(_ =>
     navigate({
       name: SCREEN.EXPENSE_MODAL,
-      params: {id: item.id!},
+      params: {expense: item},
     }),
   );
 

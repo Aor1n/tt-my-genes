@@ -18,7 +18,7 @@ const TabBar = ({index}: {index: BottomTabBarProps['state']['index']}) => {
   const onPress = useCbOnce(_ => {
     navigate({
       name: SCREEN.EXPENSE_MODAL,
-      params: {id: undefined},
+      params: {expense: undefined},
     });
   });
 

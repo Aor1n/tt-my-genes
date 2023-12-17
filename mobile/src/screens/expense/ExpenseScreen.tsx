@@ -10,13 +10,13 @@ import getStylesHook from 'helpers/getStylesHook.ts';
 const ExpenseScreen: RootStackComponent<
   typeof SCREEN.EXPENSE_MODAL
 > = props => {
-  const id = props.route.params?.id;
+  const expense = props.route.params?.expense;
   const {styles} = useStyles();
 
   const {goBack} = useNavigation();
 
   return (
-    <ExpenseForm id={id}>
+    <ExpenseForm expense={expense}>
       <View style={styles.closeIconContainer}>
         <TouchableOpacity onPress={goBack} style={styles.closeIcon}>
           <CloseIcon />
