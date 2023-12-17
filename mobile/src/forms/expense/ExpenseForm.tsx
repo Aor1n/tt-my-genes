@@ -1,5 +1,5 @@
 import React, {PropsWithChildren} from 'react';
-import {Text, View} from 'react-native';
+import {Keyboard, Pressable, Text, View} from 'react-native';
 import useExpenseForm, {Expense} from 'forms/expense/useExpenseForm.ts';
 import Input from 'components/inputs/Input.tsx';
 import DatePickerInput from 'components/inputs/DatePickerInput.tsx';
@@ -23,38 +23,45 @@ const ExpenseForm = ({expense, children}: ExpenseFormProps) => {
   const id = expense?.id;
 
   return (
-    <View style={styles.container}>
-      {children}
+    <Pressable onPress={Keyboard.dismiss} style={styles.pressableContainer}>
+      <View style={styles.container}>
+        {children}
 
-      <View style={styles.wrapper}>
-        <Text style={styles.title}>{`${id ? 'Edit' : 'Create'} Expense`}</Text>
-        <Input
-          form={form}
-          name={'title'}
-          {...{[id ? 'label' : 'placeholder']: 'Title'}}
-        />
-        <Input
-          form={form}
-          name={'amount'}
-          {...{[id ? 'label' : 'placeholder']: 'Amount'}}
-          keyboardType={'numeric'}
-        />
+        <View style={styles.wrapper}>
+          <Text style={styles.title}>{`${
+            id ? 'Edit' : 'Create'
+          } Expense`}</Text>
+          <Input
+            form={form}
+            name={'title'}
+            {...{[id ? 'label' : 'placeholder']: 'Title'}}
+          />
+          <Input
+            form={form}
+            name={'amount'}
+            {...{[id ? 'label' : 'placeholder']: 'Amount'}}
+            keyboardType={'numeric'}
+          />
 
-        {id && <DatePickerInput form={form} name={'date'} label={'Date'} />}
+          {id && <DatePickerInput form={form} name={'date'} label={'Date'} />}
+        </View>
+
+        <View style={styles.button}>
+          <Button
+            title={id ? 'Edit' : 'Create'}
+            isLoading={false}
+            onPress={handleSubmit}
+          />
+        </View>
       </View>
-
-      <View style={styles.button}>
-        <Button
-          title={id ? 'Edit' : 'Create'}
-          isLoading={false}
-          onPress={handleSubmit}
-        />
-      </View>
-    </View>
+    </Pressable>
   );
 };
 
 const useStyles = getStylesHook(_ => ({
+  pressableContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     justifyContent: 'space-between',

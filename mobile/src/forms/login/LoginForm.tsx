@@ -1,5 +1,5 @@
 import Container from 'components/containers/Container.tsx';
-import {View} from 'react-native';
+import {Keyboard, Pressable, View} from 'react-native';
 import Button from 'components/buttons/Button.tsx';
 import React from 'react';
 import getStylesHook from 'utils/getStylesHook.ts';
@@ -23,21 +23,26 @@ const LoginForm = () => {
   });
 
   return (
-    <Container style={styles.container}>
-      <View style={styles.inputContainer}>
-        <Input
-          form={form}
-          name={'fullName'}
-          placeholder={'Enter name'}
-          isFullBordered
-        />
-      </View>
-      <Button title={'Login'} isLoading={false} onPress={handleSubmit} />
-    </Container>
+    <Pressable onPress={Keyboard.dismiss} style={styles.pressableContainer}>
+      <Container style={styles.container}>
+        <View style={styles.inputContainer}>
+          <Input
+            form={form}
+            name={'fullName'}
+            placeholder={'Enter name'}
+            isFullBordered
+          />
+        </View>
+        <Button title={'Login'} isLoading={false} onPress={handleSubmit} />
+      </Container>
+    </Pressable>
   );
 };
 
 const useStyles = getStylesHook(_ => ({
+  pressableContainer: {
+    flex: 1,
+  },
   container: {
     paddingBottom: 28,
   },
