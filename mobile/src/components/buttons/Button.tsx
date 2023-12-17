@@ -4,7 +4,7 @@ import {ActivityIndicator, Text, View} from 'react-native';
 import TouchableScaleView, {
   TouchableScaleViewProps,
 } from 'components/containers/TouchableScaleView.tsx';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 
 interface ButtonProps extends TouchableScaleViewProps {
   title: string;

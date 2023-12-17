@@ -3,7 +3,7 @@ import {format} from 'date-fns';
 import {DD_MM_YYYY} from 'consts/FORMAT.ts';
 import React from 'react';
 import {Expense} from 'forms/expense/useExpenseForm.ts';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 import RemoveIcon from 'assets/icons/cross.svg';
 import useNetwork from 'hooks/useNetwork.ts';
 import {useCbOnce} from 'hooks/useCbOnce.ts';

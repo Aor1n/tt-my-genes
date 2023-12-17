@@ -4,7 +4,7 @@ import {Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {SCREEN} from 'navigation/consts.ts';
 import {BottomTabNavigation} from 'navigation/types.ts';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 
 export interface TabItemProps {
   info: {

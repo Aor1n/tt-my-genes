@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from 'react';
 import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 
 interface ChipProps extends PropsWithChildren {
   onPress: TouchableOpacityProps['onPress'];

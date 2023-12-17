@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, TextInput, TextInputProps, View} from 'react-native';
 import {FieldValues, Path, useController, UseFormReturn} from 'react-hook-form';
 import useCustomTheme from 'hooks/useCustomTheme.ts';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 
 export type InputProps<T extends FieldValues> = {
   form: UseFormReturn<T>;

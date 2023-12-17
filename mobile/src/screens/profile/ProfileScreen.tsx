@@ -4,7 +4,7 @@ import {RootStackComponent} from 'navigation/types.ts';
 import {SCREEN} from 'navigation/consts.ts';
 import Container from 'components/containers/Container.tsx';
 import TextValueInput from 'components/inputs/TextValueInput.tsx';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 import {useAppDispatch, useAppSelector} from 'store/hooks.ts';
 import {clearProfile} from 'store/actions/profile.ts';
 

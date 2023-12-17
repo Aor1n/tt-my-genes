@@ -4,7 +4,7 @@ import {
   BottomSheetBackdropProps,
   BottomSheetModal,
 } from '@gorhom/bottom-sheet';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 import {useAppModalSelector} from 'hooks/selectors/useAppModalSelector.ts';
 import {useCbOnce} from 'hooks/useCbOnce.ts';
 

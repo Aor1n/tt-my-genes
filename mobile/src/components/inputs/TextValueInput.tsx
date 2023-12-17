@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 
 interface TextValueInputProps {
   text: string;

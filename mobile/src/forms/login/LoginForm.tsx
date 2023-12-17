@@ -2,7 +2,7 @@ import Container from 'components/containers/Container.tsx';
 import {View} from 'react-native';
 import Button from 'components/buttons/Button.tsx';
 import React from 'react';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 import {useNavigation} from '@react-navigation/native';
 import {SCREEN} from 'navigation/consts.ts';
 import useLoginForm from 'forms/login/useLoginForm.ts';

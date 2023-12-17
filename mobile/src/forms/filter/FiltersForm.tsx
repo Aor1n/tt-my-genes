@@ -5,8 +5,9 @@ import DatePickerInput from 'components/inputs/DatePickerInput.tsx';
 import useFiltersForm from 'forms/filter/useFiltersForm.ts';
 import Button from 'components/buttons/Button.tsx';
 import {useAppModalSelector} from 'hooks/selectors/useAppModalSelector.ts';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 import CloseIcon from 'assets/icons/cross.svg';
+import {notify} from 'utils/notify.ts';
 
 const FiltersForm = () => {
   const {styles} = useStyles();
@@ -15,6 +16,10 @@ const FiltersForm = () => {
     onSuccessfulSubmit: () => {
       form.reset();
       setIsModalShown(false);
+      notify({
+        type: 'info',
+        description: 'Backend is not ready yet',
+      });
     },
   });
 

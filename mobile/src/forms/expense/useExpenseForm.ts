@@ -3,7 +3,7 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {z} from 'zod';
 import useFillEditForm from 'forms/expense/useFillEditForm.ts';
 import useNetwork from 'hooks/useNetwork.ts';
-import Toast from 'react-native-toast-message';
+import {notify} from 'utils/notify.ts';
 
 const expenseSchema = z.object({
   id: z.string().uuid().nullish(),
@@ -55,10 +55,10 @@ export default function useExpenseForm({
         await createExpense(formValues);
       }
 
-      Toast.show({
+      notify({
         type: 'success',
-        text1: 'Success!',
-        text2: `Expense has been ${isEditForm ? 'edited' : 'created'}`,
+        title: 'Success!',
+        description: `Expense has been ${isEditForm ? 'edited' : 'created'}`,
       });
 
       onSuccessfulSubmit();

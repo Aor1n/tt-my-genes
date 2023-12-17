@@ -7,7 +7,7 @@ import {useCbOnce} from 'hooks/useCbOnce.ts';
 import {SCREEN} from 'navigation/consts.ts';
 import {TabItem} from 'navigation/tabs/components/TabItem.tsx';
 import PlusIcon from 'assets/icons/plus.svg';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 import IS_IOS from 'consts/IS_IOS.ts';
 
 const TabBar = ({index}: {index: BottomTabBarProps['state']['index']}) => {

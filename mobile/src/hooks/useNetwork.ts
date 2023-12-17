@@ -1,6 +1,6 @@
 import ky, {type Options, type SearchParamsOption} from 'ky';
 import {Expense} from 'forms/expense/useExpenseForm.ts';
-import Toast from 'react-native-toast-message';
+import {notify} from 'utils/notify.ts';
 
 const apiUrl = 'http://localhost:3000';
 
@@ -20,10 +20,11 @@ const useNetwork = () => {
       const response: TReturn = await ky(`${apiUrl}/${path}`, options).json();
       return response;
     } catch (e) {
-      Toast.show({
+      notify({
         type: 'error',
-        text2: 'Backend is not ready yet',
+        description: 'Backend is not ready yet',
       });
+
       throw new Error();
     }
   };

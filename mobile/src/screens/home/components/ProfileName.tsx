@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {useAppSelector} from 'store/hooks.ts';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 
 const ProfileName = () => {
   const {styles} = useStyles();

@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import Chip from 'components/buttons/Chip.tsx';
 import SlidersIcon from 'assets/icons/sliders.svg';
-import getStylesHook from 'helpers/getStylesHook.ts';
+import getStylesHook from 'utils/getStylesHook.ts';
 import {useAppSelector} from 'store/hooks.ts';
 import {useAppModalSelector} from 'hooks/selectors/useAppModalSelector.ts';
 import FiltersBottomSheet from 'screens/home/components/Filters/components/FiltersBottomSheet.tsx';
