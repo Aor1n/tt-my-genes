@@ -5,6 +5,7 @@ import Input from 'components/inputs/Input.tsx';
 import DatePickerInput from 'components/inputs/DatePickerInput.tsx';
 import Button from 'components/buttons/Button.tsx';
 import getStylesHook from 'helpers/getStylesHook.ts';
+import {useNavigation} from '@react-navigation/native';
 
 interface ExpenseFormProps extends PropsWithChildren {
   expense?: Expense;
@@ -12,9 +13,11 @@ interface ExpenseFormProps extends PropsWithChildren {
 
 const ExpenseForm = ({expense, children}: ExpenseFormProps) => {
   const {styles} = useStyles();
+  const {goBack} = useNavigation();
   const {form, handleSubmit} = useExpenseForm({
     expense,
-    onSuccessfulSubmit: () => {},
+    onSuccessfulSubmit: goBack,
+    onErrorSubmit: goBack,
   });
 
   const id = expense?.id;

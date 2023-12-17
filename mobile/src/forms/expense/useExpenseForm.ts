@@ -3,6 +3,7 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {z} from 'zod';
 import useFillEditForm from 'forms/expense/useFillEditForm.ts';
 import useNetwork from 'hooks/useNetwork.ts';
+import Toast from 'react-native-toast-message';
 
 const expenseSchema = z.object({
   id: z.string().uuid().nullish(),
@@ -16,6 +17,7 @@ export type Expense = z.infer<typeof expenseSchema>;
 interface UseExpenseProps {
   expense?: Expense;
   onSuccessfulSubmit: () => void;
+  onErrorSubmit: () => void;
 }
 
 interface UseExpenseReturn {
@@ -26,6 +28,7 @@ interface UseExpenseReturn {
 export default function useExpenseForm({
   expense,
   onSuccessfulSubmit,
+  onErrorSubmit,
 }: UseExpenseProps): UseExpenseReturn {
   const defaultValues = {
     title: '',
@@ -51,10 +54,16 @@ export default function useExpenseForm({
       } else {
         await createExpense(formValues);
       }
-      console.log('formValues', formValues);
+
+      Toast.show({
+        type: 'success',
+        text1: 'Success!',
+        text2: `Expense has been ${isEditForm ? 'edited' : 'created'}`,
+      });
+
       onSuccessfulSubmit();
     } catch (e) {
-      //
+      onErrorSubmit();
     }
   };
 
