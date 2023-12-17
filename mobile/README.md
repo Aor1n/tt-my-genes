@@ -11,7 +11,7 @@ yarn && npx pod-install
 Run in its _own_ terminal.
 
 ```bash
-cd ../dummy-backend/ && yarn && node index.js
+cd ../dummy-backend/ && yarn && yarn start
 ```
 
 ## Step 1: Start the Metro Server
