@@ -6,8 +6,14 @@ module.exports = {
             const value = object[key]
             if (!value) continue
 
-            finalSql += ` AND instr(${key}, ?) > 0`
-            params.push(value)
+            if (key === 'date') {
+                finalSql += ` AND instr(${key}, ?) > 0`
+                params.push(value.slice(0, 10))
+            } else {
+                finalSql += ` AND instr(${key}, ?) > 0`
+                params.push(value)
+            }
+
         }
 
         finalSql += ' ORDER BY date DESC'
