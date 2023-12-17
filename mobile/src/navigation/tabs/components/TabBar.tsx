@@ -67,6 +67,7 @@ const useStyles = getStylesHook<number>((theme, bottomInsert = 20) => ({
   },
   plusContainer: {
     position: 'absolute',
+    zIndex: 1,
     top: -PLUS_CONTAINER_HALF_SIZE + 5,
     left: PLUS_CONTAINER_POSITION,
     justifyContent: 'center',
