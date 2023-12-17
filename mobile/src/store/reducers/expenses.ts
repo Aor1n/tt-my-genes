@@ -2,13 +2,11 @@ import {createSlice} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SLICE_KEY} from 'store/consts.ts';
 
-const MOCK_STATE = {
+const initialState = {
   totalExpenses: 0,
   totalExpensesItems: 0,
   items: [],
 };
-
-const initialState = MOCK_STATE;
 
 export const expensesSlice = createSlice({
   name: SLICE_KEY.EXPENSES,

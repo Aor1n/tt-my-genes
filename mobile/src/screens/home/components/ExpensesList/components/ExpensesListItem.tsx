@@ -9,6 +9,8 @@ import {useCbOnce} from 'hooks/useCbOnce.ts';
 import {useNavigation} from '@react-navigation/native';
 import {SCREEN} from 'navigation/consts.ts';
 import useHandleExpenseRemove from 'screens/home/components/ExpensesList/components/useHandleExpenseRemove.ts';
+import Animated from 'react-native-reanimated';
+import useFadeInAnimation from 'hooks/useFadeInAnimation.ts';
 
 export interface ParsedExpense extends Expense {
   isFirstDate: boolean;
@@ -19,6 +21,7 @@ export interface ParsedExpense extends Expense {
 const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
   const {styles} = useStyles(item.isBorderBottom);
   const {navigate} = useNavigation();
+  const {fadeInStyle} = useFadeInAnimation({duration: 250, delay: 120});
 
   const onRemovePress = useHandleExpenseRemove(item.id!);
 
@@ -36,15 +39,17 @@ const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
           <Text>{format(new Date(item.date), DD_MM_YYYY)}</Text>
         </View>
       )}
-      <TouchableOpacity style={styles.innerContainer} onPress={onEditPress}>
-        <TouchableOpacity onPress={onRemovePress} style={styles.removeIcon}>
-          <RemoveIcon />
+      <Animated.View style={fadeInStyle}>
+        <TouchableOpacity style={styles.innerContainer} onPress={onEditPress}>
+          <TouchableOpacity onPress={onRemovePress} style={styles.removeIcon}>
+            <RemoveIcon />
+          </TouchableOpacity>
+          <Text style={styles.title}>{item.title}</Text>
+          <View style={styles.amountContainer}>
+            <Text>${item.amount}</Text>
+          </View>
         </TouchableOpacity>
-        <Text style={styles.title}>{item.title}</Text>
-        <View style={styles.amountContainer}>
-          <Text>${item.amount}</Text>
-        </View>
-      </TouchableOpacity>
+      </Animated.View>
     </View>
   );
 };
