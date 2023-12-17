@@ -9,12 +9,15 @@ import ExpensesList from 'screens/home/components/ExpensesList/ExpensesList.tsx'
 import useExpenses from 'hooks/query/useExpenses.ts';
 import ProfileName from 'screens/home/components/ProfileName.tsx';
 import {useEffectOnce} from 'hooks/useEffectOnce.ts';
+import useFiltersSelector from 'hooks/selectors/useFiltersSelector.ts';
 
 const HomeScreen: RootStackComponent<typeof SCREEN.HOME> = () => {
   const {styles} = useStyles();
   const {fetchExpenses} = useExpenses();
+  const {resetFilters} = useFiltersSelector();
 
   useEffectOnce(() => {
+    resetFilters();
     (async () => await fetchExpenses())();
   });
 

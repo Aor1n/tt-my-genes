@@ -3,9 +3,10 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {z} from 'zod';
 import {formatISO} from 'date-fns/fp';
 import useExpenses from 'hooks/query/useExpenses.ts';
+import useFiltersSelector from 'hooks/selectors/useFiltersSelector.ts';
 
 const filtersSchema = z.object({
-  title: z.string().min(2).max(20).trim(),
+  title: z.string().max(20).trim(),
   date: z.union([z.coerce.date(), z.string()]),
 });
 
@@ -32,6 +33,8 @@ export default function useFiltersForm({
     resolver: zodResolver(filtersSchema),
   });
 
+  const {setFilters} = useFiltersSelector();
+
   const {fetchExpenses} = useExpenses();
 
   const handleSubmit = async (formValues: Filter) => {
@@ -39,6 +42,9 @@ export default function useFiltersForm({
       ...formValues,
       date: formatISO(formValues.date as Date),
     };
+
+    setFilters(values);
+
     try {
       await fetchExpenses(values);
       onSuccessfulSubmit();

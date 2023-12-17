@@ -4,6 +4,10 @@ import {SLICE_KEY} from 'store/consts.ts';
 
 const initialState = {
   isModalShown: false,
+  filters: {
+    title: '',
+    date: '',
+  },
 };
 
 export const globalSlice = createSlice({
@@ -13,6 +17,9 @@ export const globalSlice = createSlice({
     setIsModalShown: (state, {payload}) => {
       state.isModalShown = payload;
     },
+    setFilters: (state, {payload}) => {
+      state.filters = payload;
+    },
   },
 });
 
@@ -20,5 +27,5 @@ export const globalPersistConfig = {
   key: SLICE_KEY.GLOBAL,
   storage: AsyncStorage,
   whitelist: [],
-  blacklist: [],
+  blacklist: ['filters'],
 };
