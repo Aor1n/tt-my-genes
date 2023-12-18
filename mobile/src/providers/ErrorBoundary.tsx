@@ -1,5 +1,5 @@
-import React, {PropsWithChildren} from 'react';
-import ErrorBoundary from 'react-native-error-boundary';
+import React from 'react';
+import ErrorBoundary, {ErrorBoundaryProps} from 'react-native-error-boundary';
 import {Text, View} from 'react-native';
 import Button from 'components/buttons/Button.tsx';
 
@@ -11,7 +11,7 @@ const ErrorFallback = (props: {error: Error; resetError: () => void}) => (
   </View>
 );
 
-const ErrorBoundaryProvider = ({children}: PropsWithChildren) => {
+const ErrorBoundaryProvider = ({children}: ErrorBoundaryProps) => {
   return (
     <ErrorBoundary
       FallbackComponent={ErrorFallback}
@@ -19,7 +19,7 @@ const ErrorBoundaryProvider = ({children}: PropsWithChildren) => {
         /* Log the error to an error reporting service */
         console.error(error, stackTrace);
       }}>
-      <View>{children}</View>
+      {children}
     </ErrorBoundary>
   );
 };
