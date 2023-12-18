@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest",
     "xcode": "xed ./ios",
-    "ios:clean-install": "rm -rf node_modules && rm yarn.lock && rm -rf ios/Pods && rm -rf ios/build && yarn cache clean && yarn && npx pod-install"
+    "ios": "react-native run-ios",
+    "ios:clean-install": "rm -rf node_modules && rm yarn.lock && rm -rf ios/Pods && rm -rf ios/build && yarn cache clean && yarn && npx pod-install",
+    "android": "react-native run-android && yarn android:adb_port",
+    "android:reverse_port": "adb reverse tcp:3000 tcp:3000",
+    "lint": "eslint .",
+    "test": "jest"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.5.1",
