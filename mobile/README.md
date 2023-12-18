@@ -31,13 +31,16 @@ yarn start
 ```bash
 # Preferable way is to run directly via xcode
 yarn xcode
-
-# Other option
-yarn ios
 ```
 
 ### For Android
 
 ```bash
 yarn android
+```
+
+### Android connection troubleshooting
+```bash
+yarn android:reverse_port
+# r - reload app in Metro terminal after the command
 ```
