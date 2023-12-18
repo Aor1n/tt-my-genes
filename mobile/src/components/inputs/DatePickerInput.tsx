@@ -10,11 +10,13 @@ import {useCbOnce} from 'hooks/useCbOnce.ts';
 type DatePickerInputProps<T extends FieldValues> = {
   form: UseFormReturn<T>;
   name: Path<T>;
+  isValueAlwaysShown?: boolean;
 } & InputProps<T>;
 
 const DatePickerInput = <T extends FieldValues>({
   form,
   name,
+  isValueAlwaysShown,
   ...rest
 }: DatePickerInputProps<T>) => {
   const [open, setOpen] = useState(false);
@@ -30,7 +32,8 @@ const DatePickerInput = <T extends FieldValues>({
     isDirty,
   );
 
-  const valueToDisplay = isDirty ? format(field.value, DD_MM_YYYY) : '';
+  const valueToDisplay =
+    isDirty || isValueAlwaysShown ? format(field.value, DD_MM_YYYY) : '';
 
   return (
     <View>
