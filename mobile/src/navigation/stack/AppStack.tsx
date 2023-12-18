@@ -9,6 +9,7 @@ import RootBottomTabs from 'navigation/tabs/RootBottomTabs.tsx';
 import ExpenseScreen from 'screens/expense/ExpenseScreen.tsx';
 import {useAppSelector} from 'store/hooks.ts';
 import BottomSheetProvider from 'providers/BottomSheetProvider.tsx';
+import ErrorBoundaryProvider from 'providers/ErrorBoundary.tsx';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,31 +18,33 @@ const AppStack = () => {
 
   return (
     <NavigationContainer theme={theme}>
-      <BottomSheetProvider>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
-          {!isLoggedIn && (
-            <Stack.Screen name={SCREEN.LOGIN} component={LoginScreen} />
-          )}
-          {isLoggedIn && (
-            <Stack.Group>
-              <Stack.Screen
-                name={SCREEN.ROOT_BOTTOM_TABS}
-                component={RootBottomTabs}
-              />
-              <Stack.Screen
-                name={SCREEN.EXPENSE_MODAL}
-                component={ExpenseScreen}
-                options={{
-                  presentation: 'modal',
-                }}
-              />
-            </Stack.Group>
-          )}
-        </Stack.Navigator>
-      </BottomSheetProvider>
+      <ErrorBoundaryProvider>
+        <BottomSheetProvider>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}>
+            {!isLoggedIn && (
+              <Stack.Screen name={SCREEN.LOGIN} component={LoginScreen} />
+            )}
+            {isLoggedIn && (
+              <Stack.Group>
+                <Stack.Screen
+                  name={SCREEN.ROOT_BOTTOM_TABS}
+                  component={RootBottomTabs}
+                />
+                <Stack.Screen
+                  name={SCREEN.EXPENSE_MODAL}
+                  component={ExpenseScreen}
+                  options={{
+                    presentation: 'modal',
+                  }}
+                />
+              </Stack.Group>
+            )}
+          </Stack.Navigator>
+        </BottomSheetProvider>
+      </ErrorBoundaryProvider>
     </NavigationContainer>
   );
 };
