@@ -11,6 +11,7 @@ import {SCREEN} from 'navigation/consts.ts';
 import useHandleExpenseRemove from 'screens/home/components/ExpensesList/components/useHandleExpenseRemove.ts';
 import Animated from 'react-native-reanimated';
 import useFadeInAnimation from 'hooks/useFadeInAnimation.ts';
+import IS_IOS from 'consts/IS_IOS.ts';
 
 export interface ParsedExpense extends Expense {
   isFirstDate: boolean;
@@ -71,7 +72,7 @@ const useStyles = getStylesHook<boolean>((theme, isBorderBottom) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomColor: theme.colors.black,
-    borderBottomWidth: isBorderBottom ? 0.5 : 0,
+    borderBottomWidth: isBorderBottom && IS_IOS ? 0.5 : 0,
     shadowColor: theme.colors.black,
     shadowOffset: {
       width: 0,
@@ -79,7 +80,6 @@ const useStyles = getStylesHook<boolean>((theme, isBorderBottom) => ({
     },
     shadowOpacity: 0.12,
     shadowRadius: 4,
-    elevation: 4,
     marginTop: 10,
     paddingBottom: 10,
     paddingRight: 16,

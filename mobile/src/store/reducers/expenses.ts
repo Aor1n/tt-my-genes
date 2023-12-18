@@ -13,9 +13,9 @@ export const expensesSlice = createSlice({
   initialState,
   reducers: {
     setExpenses: (state, {payload}) => {
-      state.totalExpenses = payload.totalExpenses;
-      state.totalExpensesItems = payload.totalExpensesItems;
-      state.items = payload.items;
+      state.totalExpenses = payload?.totalExpenses ?? 0;
+      state.totalExpensesItems = payload?.totalExpensesItems ?? 0;
+      state.items = payload?.items ?? [];
     },
   },
 });

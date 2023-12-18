@@ -3,6 +3,7 @@ import {Text, TextInput, TextInputProps, View} from 'react-native';
 import {FieldValues, Path, useController, UseFormReturn} from 'react-hook-form';
 import useCustomTheme from 'hooks/useCustomTheme.ts';
 import getStylesHook from 'utils/getStylesHook.ts';
+import IS_IOS from 'consts/IS_IOS.ts';
 
 export type InputProps<T extends FieldValues> = {
   form: UseFormReturn<T>;
@@ -27,12 +28,14 @@ const Input = <T extends FieldValues>({
 
   const error = form.formState.errors?.[name]?.message as string;
 
+  const errorStyles = IS_IOS && error ? styles.error : {};
+
   return (
     <View style={styles.container}>
       {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         {...rest}
-        style={[styles.input, error ? styles.error : {}]}
+        style={[styles.input, errorStyles]}
         placeholderTextColor={colors.textPlaceholder}
         spellCheck={false}
         defaultValue={rest.value ?? String(field.value)}

@@ -25,7 +25,7 @@ const useNetwork = () => {
         type: 'error',
         description: error.message,
       });
-
+      console.error(error);
       throw new Error();
     }
   };
