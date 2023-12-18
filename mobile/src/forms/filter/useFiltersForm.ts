@@ -1,9 +1,10 @@
 import {useForm, UseFormHandleSubmit, UseFormReturn} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {z} from 'zod';
-import {formatISO} from 'date-fns/fp';
 import useExpenses from 'hooks/query/useExpenses.ts';
 import useFiltersSelector from 'hooks/selectors/useFiltersSelector.ts';
+import {format} from 'date-fns';
+import {YYYY_MM_DD} from 'consts/FORMAT.ts';
 
 const filtersSchema = z.object({
   title: z.string().max(20).trim(),
@@ -13,7 +14,7 @@ const filtersSchema = z.object({
 type Filter = z.infer<typeof filtersSchema>;
 
 interface UseFilterProps {
-  onSuccessfulSubmit: () => void;
+  onSuccessfulSubmit: (arg: Filter) => void;
 }
 
 interface UseFilterReturn {
@@ -38,16 +39,19 @@ export default function useFiltersForm({
   const {fetchExpenses} = useExpenses();
 
   const handleSubmit = async (formValues: Filter) => {
+    const {isDirty} = form.getFieldState('date');
+    const date = isDirty ? format(new Date(formValues.date), YYYY_MM_DD) : '';
+
     const values = {
       ...formValues,
-      date: formatISO(formValues.date as Date),
+      date,
     };
 
     setFilters(values);
 
     try {
       await fetchExpenses(values);
-      onSuccessfulSubmit();
+      onSuccessfulSubmit(values);
     } catch (e) {
       //
     }

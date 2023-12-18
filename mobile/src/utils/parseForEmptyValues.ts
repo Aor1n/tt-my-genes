@@ -1,5 +1,9 @@
-export const parseForEmptyValues = (object: Record<string, string> = {}) => {
-  const result: Record<string, string> = {};
+type Value = string | Date;
+
+type Object = Record<string, Value> | undefined;
+
+export const parseForEmptyValues = <T extends Object>(object: T) => {
+  const result: Object = {};
 
   for (const key in object) {
     const value = object[key];

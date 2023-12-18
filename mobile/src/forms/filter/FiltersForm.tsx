@@ -10,16 +10,22 @@ import CloseIcon from 'assets/icons/cross.svg';
 import {notify} from 'utils/notify.ts';
 import useHandleCleanPress from 'forms/filter/useHandleCleanPress.ts';
 import TextField from 'components/inputs/TextField.tsx';
+import {parseForEmptyValues} from 'utils/parseForEmptyValues.ts';
 
 const FiltersForm = () => {
   const {styles} = useStyles();
   const {hideModal} = useAppModalSelector();
   const {form, handleSubmit} = useFiltersForm({
-    onSuccessfulSubmit: () => {
+    onSuccessfulSubmit: rawFilters => {
       hideModal();
+      const appliedFilters = Object.keys(parseForEmptyValues(rawFilters));
+      const description =
+        appliedFilters.length === 0
+          ? 'Data has been fetched'
+          : `Data has been filtered by ${appliedFilters.join(', ')}`;
       notify({
         type: 'success',
-        description: 'Data was filtered',
+        description,
       });
     },
   });
