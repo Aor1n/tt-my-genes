@@ -7,7 +7,7 @@
     "xcode": "xed ./ios",
     "ios": "react-native run-ios",
     "ios:clean-install": "rm -rf node_modules && rm yarn.lock && rm -rf ios/Pods && rm -rf ios/build && yarn cache clean && yarn && npx pod-install",
-    "android": "react-native run-android && yarn android:adb_port",
+    "android": "react-native run-android && yarn android:reverse_port",
     "android:reverse_port": "adb reverse tcp:3000 tcp:3000",
     "lint": "eslint .",
     "test": "jest"
