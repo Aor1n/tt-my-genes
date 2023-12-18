@@ -3,6 +3,7 @@ import {useAppDispatch} from 'store/hooks.ts';
 import {setExpenses} from 'store/actions/expenses.ts';
 import useFiltersSelector from 'hooks/selectors/useFiltersSelector.ts';
 import {useCallback} from 'react';
+import {parseForEmptyValues} from 'utils/parseForEmptyValues.ts';
 
 const useExpenses = () => {
   const {getExpenses} = useNetwork();
@@ -11,7 +12,7 @@ const useExpenses = () => {
 
   const fetchExpenses = useCallback(
     async (localFilters?: typeof filters) => {
-      const data = await getExpenses(localFilters ?? {});
+      const data = await getExpenses(parseForEmptyValues(localFilters));
       dispatch(setExpenses(data));
     },
     [dispatch, getExpenses],
