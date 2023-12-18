@@ -33,6 +33,11 @@ yarn start
 yarn xcode
 ```
 
+```bash
+# or via 
+yarn ios
+```
+
 ### For Android
 
 ```bash
