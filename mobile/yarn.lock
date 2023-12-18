@@ -6130,6 +6130,11 @@ react-native-date-picker@^4.3.4:
   resolved "https://registry.yarnpkg.com/react-native-date-picker/-/react-native-date-picker-4.3.4.tgz#1935b246ecc850dd819431339232ada4c9628111"
   integrity sha512-m02Q49mLn3p11CPvXkOBeUDTLrv1Khubd5Tyrs4pUXYr2dXcPDpGWVw5X0zNYrWWvpDuHKKv8cwBwYR3xNqi3Q==
 
+react-native-error-boundary@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/react-native-error-boundary/-/react-native-error-boundary-1.2.4.tgz#d700d1c23cdc18a17f6f14bd7d9f751a1f698c65"
+  integrity sha512-PF5xn+3mGKk8uzf9GpOQa1kvxsG3Bs3XMwJZNqqUG//jC1FDp+WRGxg4r2sPG70MveSOQmQNuHnAycCPYQNg6g==
+
 react-native-gesture-handler@^2.14.0:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.14.0.tgz#d6aec0d8b2e55c67557fd6107e828c0a1a248be8"
