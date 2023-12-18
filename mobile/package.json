@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "xcode": "xed ./ios",
-    "ios": "react-native run-ios",
+    "ios": "react-native run-ios --simulator \"iPhone 14 Pro (16.0)\"",
     "ios:clean-install": "rm -rf node_modules && rm yarn.lock && rm -rf ios/Pods && rm -rf ios/build && yarn cache clean && yarn && npx pod-install",
     "android": "react-native run-android && yarn android:reverse_port",
     "android:reverse_port": "adb reverse tcp:3000 tcp:3000",
