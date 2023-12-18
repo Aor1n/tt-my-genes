@@ -9,7 +9,7 @@ import useExpenses from 'hooks/query/useExpenses.ts';
 const expenseSchema = z.object({
   id: z.string().uuid().nullish(),
   title: z.string().min(2).max(20).trim(),
-  amount: z.union([z.string(), z.number()]).pipe(z.coerce.number()),
+  amount: z.string().min(1, 'Minimum amount is 0$'),
   date: z.union([z.coerce.date(), z.string()]),
 });
 
@@ -33,7 +33,7 @@ export default function useExpenseForm({
 }: UseExpenseProps): UseExpenseReturn {
   const defaultValues = {
     title: '',
-    amount: 0,
+    amount: '',
     date: new Date(),
   };
 
