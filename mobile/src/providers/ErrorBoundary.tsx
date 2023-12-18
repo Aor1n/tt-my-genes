@@ -1,9 +1,10 @@
 import React from 'react';
 import ErrorBoundary, {ErrorBoundaryProps} from 'react-native-error-boundary';
-import {DimensionValue, Text, View} from 'react-native';
+import {DimensionValue, View} from 'react-native';
 import Button from 'components/buttons/Button.tsx';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import getStylesHook from 'utils/getStylesHook.ts';
+import TextField from 'components/inputs/TextField.tsx';
 
 const ErrorFallback = (props: {error: Error; resetError: () => void}) => {
   const {top} = useSafeAreaInsets();
@@ -11,8 +12,8 @@ const ErrorFallback = (props: {error: Error; resetError: () => void}) => {
 
   return (
     <View style={styles.container}>
-      <Text>Something happened!</Text>
-      <Text>{props.error.toString()}</Text>
+      <TextField>Something happened!</TextField>
+      <TextField>{props.error.toString()}</TextField>
       <Button
         onPress={props.resetError}
         title={'Try again'}

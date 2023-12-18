@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import Chip from 'components/buttons/Chip.tsx';
 import SlidersIcon from 'assets/icons/sliders.svg';
 import getStylesHook from 'utils/getStylesHook.ts';
 import {useAppSelector} from 'store/hooks.ts';
 import {useAppModalSelector} from 'hooks/selectors/useAppModalSelector.ts';
 import FiltersBottomSheet from 'screens/home/components/Filters/components/FiltersBottomSheet.tsx';
+import TextField from 'components/inputs/TextField.tsx';
 
 const Filters = () => {
   const {styles} = useStyles();
@@ -14,11 +15,13 @@ const Filters = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.totalExpenses}>Total expenses: ${totalExpenses}</Text>
+      <TextField style={styles.totalExpenses}>
+        Total expenses: ${totalExpenses}
+      </TextField>
       <View style={styles.filtersContainer}>
         <Chip onPress={toggleIsModalShown}>
           <SlidersIcon />
-          <Text style={styles.filtersText}>Filters</Text>
+          <TextField style={styles.filtersText}>Filters</TextField>
         </Chip>
       </View>
       <FiltersBottomSheet />

@@ -1,11 +1,13 @@
 import React from 'react';
-import {Text} from 'react-native';
 import getStylesHook from 'utils/getStylesHook.ts';
+import TextField from 'components/inputs/TextField.tsx';
 
 const ListEmptyComponent = () => {
   const {styles} = useStyles();
 
-  return <Text style={styles.text}>No data for applied filters :(</Text>;
+  return (
+    <TextField style={styles.text}>No data for applied filters :(</TextField>
+  );
 };
 
 const useStyles = getStylesHook(_ => ({

@@ -1,11 +1,12 @@
 import React, {PropsWithChildren} from 'react';
-import {Keyboard, Pressable, Text, View} from 'react-native';
+import {Keyboard, Pressable, View} from 'react-native';
 import useExpenseForm, {Expense} from 'forms/expense/useExpenseForm.ts';
 import Input from 'components/inputs/Input.tsx';
 import DatePickerInput from 'components/inputs/DatePickerInput.tsx';
 import Button from 'components/buttons/Button.tsx';
 import getStylesHook from 'utils/getStylesHook.ts';
 import {useNavigation} from '@react-navigation/native';
+import TextField from 'components/inputs/TextField.tsx';
 
 interface ExpenseFormProps extends PropsWithChildren {
   expense?: Expense;
@@ -28,9 +29,9 @@ const ExpenseForm = ({expense, children}: ExpenseFormProps) => {
         {children}
 
         <View style={styles.wrapper}>
-          <Text style={styles.title}>{`${
+          <TextField style={styles.title}>{`${
             id ? 'Edit' : 'Create'
-          } Expense`}</Text>
+          } Expense`}</TextField>
           <Input
             form={form}
             name={'title'}

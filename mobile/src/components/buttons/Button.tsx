@@ -1,10 +1,11 @@
 import React from 'react';
 
-import {ActivityIndicator, Text, View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import TouchableScaleView, {
   TouchableScaleViewProps,
 } from 'components/containers/TouchableScaleView.tsx';
 import getStylesHook from 'utils/getStylesHook.ts';
+import TextField from 'components/inputs/TextField.tsx';
 
 interface ButtonProps extends TouchableScaleViewProps {
   title: string;
@@ -21,7 +22,7 @@ const Button = ({title, isLoading, ...rest}: ButtonProps) => {
           <ActivityIndicator color={'white'} style={styles.loading} />
         )}
 
-        <Text style={styles.text}>{title}</Text>
+        <TextField style={styles.text}>{title}</TextField>
       </TouchableScaleView>
     </View>
   );

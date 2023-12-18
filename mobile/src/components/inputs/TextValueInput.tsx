@@ -1,6 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import getStylesHook from 'utils/getStylesHook.ts';
+import TextField from 'components/inputs/TextField.tsx';
 
 interface TextValueInputProps {
   text: string;
@@ -12,8 +13,8 @@ const TextValueInput = ({text, value}: TextValueInputProps) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{text}</Text>
-      {!!value && <Text style={styles.value}>{value}</Text>}
+      <TextField style={styles.text}>{text}</TextField>
+      {!!value && <TextField style={styles.value}>{value}</TextField>}
     </View>
   );
 };

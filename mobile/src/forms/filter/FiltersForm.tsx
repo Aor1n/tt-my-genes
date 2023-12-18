@@ -1,5 +1,5 @@
 import React from 'react';
-import {Keyboard, Pressable, Text, TouchableOpacity, View} from 'react-native';
+import {Keyboard, Pressable, TouchableOpacity, View} from 'react-native';
 import Input from 'components/inputs/Input.tsx';
 import DatePickerInput from 'components/inputs/DatePickerInput.tsx';
 import useFiltersForm from 'forms/filter/useFiltersForm.ts';
@@ -9,6 +9,7 @@ import getStylesHook from 'utils/getStylesHook.ts';
 import CloseIcon from 'assets/icons/cross.svg';
 import {notify} from 'utils/notify.ts';
 import useHandleCleanPress from 'forms/filter/useHandleCleanPress.ts';
+import TextField from 'components/inputs/TextField.tsx';
 
 const FiltersForm = () => {
   const {styles} = useStyles();
@@ -30,9 +31,9 @@ const FiltersForm = () => {
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <TouchableOpacity onPress={onCleanPress}>
-            <Text style={styles.cleanText}>clean</Text>
+            <TextField style={styles.cleanText}>clean</TextField>
           </TouchableOpacity>
-          <Text style={styles.header}>Filters</Text>
+          <TextField style={styles.header}>Filters</TextField>
           <TouchableOpacity style={styles.closeIcon} onPress={hideModal}>
             <CloseIcon width={20} height={20} />
           </TouchableOpacity>

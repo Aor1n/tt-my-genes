@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {format} from 'date-fns';
 import {DD_MM_YYYY} from 'consts/FORMAT.ts';
 import React from 'react';
@@ -12,6 +12,7 @@ import useHandleExpenseRemove from 'screens/home/components/ExpensesList/compone
 import Animated from 'react-native-reanimated';
 import useFadeInAnimation from 'hooks/useFadeInAnimation.ts';
 import IS_IOS from 'consts/IS_IOS.ts';
+import TextField from 'components/inputs/TextField.tsx';
 
 export interface ParsedExpense extends Expense {
   isFirstDate: boolean;
@@ -37,7 +38,7 @@ const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
     <View style={styles.container}>
       {(item.isFirstDate || !item.isSkippedDate) && (
         <View style={styles.dateContainer}>
-          <Text>{format(new Date(item.date), DD_MM_YYYY)}</Text>
+          <TextField>{format(new Date(item.date), DD_MM_YYYY)}</TextField>
         </View>
       )}
       <Animated.View style={fadeInStyle}>
@@ -45,9 +46,9 @@ const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
           <TouchableOpacity onPress={onRemovePress} style={styles.removeIcon}>
             <RemoveIcon />
           </TouchableOpacity>
-          <Text style={styles.title}>{item.title}</Text>
+          <TextField style={styles.title}>{item.title}</TextField>
           <View style={styles.amountContainer}>
-            <Text>${item.amount}</Text>
+            <TextField>${item.amount}</TextField>
           </View>
         </TouchableOpacity>
       </Animated.View>

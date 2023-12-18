@@ -1,9 +1,10 @@
 import React from 'react';
-import {Text, TextInput, TextInputProps, View} from 'react-native';
+import {TextInput, TextInputProps, View} from 'react-native';
 import {FieldValues, Path, useController, UseFormReturn} from 'react-hook-form';
 import useCustomTheme from 'hooks/useCustomTheme.ts';
 import getStylesHook from 'utils/getStylesHook.ts';
 import IS_IOS from 'consts/IS_IOS.ts';
+import TextField from 'components/inputs/TextField.tsx';
 
 export type InputProps<T extends FieldValues> = {
   form: UseFormReturn<T>;
@@ -32,7 +33,7 @@ const Input = <T extends FieldValues>({
 
   return (
     <View style={styles.container}>
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && <TextField style={styles.label}>{label}</TextField>}
       <TextInput
         {...rest}
         style={[styles.input, errorStyles]}
@@ -44,7 +45,9 @@ const Input = <T extends FieldValues>({
         onFocus={() => form.clearErrors(name)}
       />
       {error && (
-        <Text style={[styles.errorContainer, styles.error]}>{error}</Text>
+        <TextField style={[styles.errorContainer, styles.error]}>
+          {error}
+        </TextField>
       )}
     </View>
   );
