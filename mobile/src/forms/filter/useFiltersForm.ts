@@ -8,6 +8,7 @@ import {YYYY_MM_DD} from 'consts/FORMAT.ts';
 
 const filtersSchema = z.object({
   title: z.string().max(20).trim(),
+  amount: z.string(),
   date: z.union([z.coerce.date(), z.string()]),
 });
 
@@ -28,6 +29,7 @@ export default function useFiltersForm({
   const form = useForm<Filter>({
     defaultValues: {
       title: '',
+      amount: '',
       date: new Date(),
     },
     mode: 'onSubmit',
