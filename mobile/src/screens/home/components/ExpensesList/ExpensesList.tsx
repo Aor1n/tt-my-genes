@@ -1,8 +1,6 @@
-import React from 'react';
+import React, {ComponentProps} from 'react';
 import {FlatList} from 'react-native';
-import ExpensesListItem, {
-  ParsedExpense,
-} from 'screens/home/components/ExpensesList/components/ExpensesListItem.tsx';
+import ExpensesListItem from 'screens/home/components/ExpensesList/components/ExpensesListItem.tsx';
 import useUIExpenses from 'screens/home/components/ExpensesList/hooks/useUIExpenses.ts';
 import {useCbOnce} from 'hooks/useCbOnce.ts';
 import ListEmptyComponent from 'screens/home/components/ExpensesList/components/ListEmptyComponent.tsx';
@@ -10,9 +8,11 @@ import ListEmptyComponent from 'screens/home/components/ExpensesList/components/
 const ExpensesList = () => {
   const uiExpenses = useUIExpenses();
 
-  const RenderExpensesListItem = useCbOnce(({item}: {item: ParsedExpense}) => {
-    return <ExpensesListItem item={item} />;
-  });
+  const RenderExpensesListItem = useCbOnce(
+    ({item, index}: ComponentProps<typeof ExpensesListItem>) => {
+      return <ExpensesListItem item={item} index={index} />;
+    },
+  );
 
   return (
     <FlatList

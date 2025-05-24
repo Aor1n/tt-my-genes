@@ -1,10 +1,9 @@
 import {useMemo} from 'react';
-import {Expense} from 'forms/expense/useExpenseForm.ts';
 import {useAppSelector} from 'store/hooks.ts';
 import {isSameDayHelper} from 'utils/isSameDayHelper.ts';
 
 const useUIExpenses = () => {
-  const expenses: Expense[] = useAppSelector(state => state.expenses.items);
+  const expenses = useAppSelector(state => state.expenses.items);
 
   return useMemo(
     () =>

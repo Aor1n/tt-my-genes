@@ -1,47 +1,50 @@
 import {TouchableOpacity, View} from 'react-native';
 import {format} from 'date-fns';
 import {DD_MM_YYYY} from 'consts/FORMAT.ts';
-import React from 'react';
-import {Expense} from 'forms/expense/useExpenseForm.ts';
+import React, {useCallback} from 'react';
 import getStylesHook from 'utils/getStylesHook.ts';
 import RemoveIcon from 'assets/icons/cross.svg';
-import {useCbOnce} from 'hooks/useCbOnce.ts';
 import {useNavigation} from '@react-navigation/native';
 import {SCREEN} from 'navigation/consts.ts';
 import useHandleExpenseRemove from 'screens/home/components/ExpensesList/components/useHandleExpenseRemove.ts';
-import Animated from 'react-native-reanimated';
-import useFadeInAnimation from 'hooks/useFadeInAnimation.ts';
+import Animated, {FadeInDown, FadeOutUp} from 'react-native-reanimated';
 import IS_IOS from 'consts/IS_IOS.ts';
 import TextField from 'components/inputs/TextField.tsx';
+import useUIExpenses from 'screens/home/components/ExpensesList/hooks/useUIExpenses.ts';
 
-export interface ParsedExpense extends Expense {
-  isFirstDate: boolean;
-  isSkippedDate: boolean;
-  isBorderBottom: boolean;
+interface ExpensesListItemProps {
+  item: ReturnType<typeof useUIExpenses>[number];
+  index: number;
 }
 
-const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
+const ExpensesListItem = ({item, index}: ExpensesListItemProps) => {
+  const hasDate = item.isFirstDate || !item.isSkippedDate;
   const {styles} = useStyles(item.isBorderBottom);
   const {navigate} = useNavigation();
-  const {fadeInStyle} = useFadeInAnimation({duration: 250, delay: 120});
 
-  const onRemovePress = useHandleExpenseRemove(item.id!);
+  const onRemovePress = useHandleExpenseRemove(item.id);
 
-  const onEditPress = useCbOnce(_ =>
-    navigate({
-      name: SCREEN.EXPENSE_MODAL,
-      params: {expense: item},
-    }),
+  const onEditPress = useCallback(
+    () =>
+      navigate({
+        name: SCREEN.EXPENSE_MODAL,
+        params: {expense: item},
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [item],
   );
 
   return (
-    <View style={styles.container}>
-      {(item.isFirstDate || !item.isSkippedDate) && (
+    <Animated.View
+      style={styles.container}
+      entering={FadeInDown.delay(60 * index)}
+      exiting={FadeOutUp}>
+      {hasDate && (
         <View style={styles.dateContainer}>
           <TextField>{format(new Date(item.date), DD_MM_YYYY)}</TextField>
         </View>
       )}
-      <Animated.View style={fadeInStyle}>
+      <View>
         <TouchableOpacity style={styles.innerContainer} onPress={onEditPress}>
           <TouchableOpacity onPress={onRemovePress} style={styles.removeIcon}>
             <RemoveIcon />
@@ -51,16 +54,13 @@ const ExpensesListItem = ({item}: {item: ParsedExpense}) => {
             <TextField>${item.amount}</TextField>
           </View>
         </TouchableOpacity>
-      </Animated.View>
-    </View>
+      </View>
+    </Animated.View>
   );
 };
 
-export const EXPENSE_ITEM_LIST_HEIGHT = 74;
-
-const useStyles = getStylesHook<boolean>((theme, isBorderBottom) => ({
+const useStyles = getStylesHook((theme, isBorderBottom) => ({
   container: {
-    maxHeight: EXPENSE_ITEM_LIST_HEIGHT,
     backgroundColor: theme.colors.white,
   },
   dateContainer: {
@@ -98,4 +98,4 @@ const useStyles = getStylesHook<boolean>((theme, isBorderBottom) => ({
   },
 }));
 
-export default ExpensesListItem;
+export default React.memo(ExpensesListItem);

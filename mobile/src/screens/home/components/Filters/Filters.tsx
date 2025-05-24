@@ -7,6 +7,7 @@ import {useAppSelector} from 'store/hooks.ts';
 import {useAppModalSelector} from 'hooks/selectors/useAppModalSelector.ts';
 import FiltersBottomSheet from 'screens/home/components/Filters/components/FiltersBottomSheet.tsx';
 import TextField from 'components/inputs/TextField.tsx';
+import AnimatedAmount from 'components/animated/AnimatedAmount.tsx';
 
 const Filters = () => {
   const {styles} = useStyles();
@@ -16,7 +17,8 @@ const Filters = () => {
   return (
     <View style={styles.container}>
       <TextField style={styles.totalExpenses}>
-        Total expenses: ${totalExpenses}
+        Total expenses:
+        <AnimatedAmount key={totalExpenses} value={totalExpenses} />$
       </TextField>
       <View style={styles.filtersContainer}>
         <Chip onPress={toggleIsModalShown}>
@@ -36,7 +38,7 @@ const useStyles = getStylesHook(_ => ({
     paddingHorizontal: 13,
   },
   totalExpenses: {
-    fontSize: 13,
+    fontSize: 14,
   },
   filtersContainer: {
     alignItems: 'flex-end',

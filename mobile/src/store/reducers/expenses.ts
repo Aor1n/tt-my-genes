@@ -1,8 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SLICE_KEY} from 'store/consts.ts';
+import {Expense} from 'forms/expense/useExpenseForm.ts';
 
-const initialState = {
+interface InitialState {
+  totalExpenses: number;
+  totalExpensesItems: number;
+  items: Expense[];
+}
+
+const initialState: InitialState = {
   totalExpenses: 0,
   totalExpensesItems: 0,
   items: [],
@@ -13,9 +20,11 @@ export const expensesSlice = createSlice({
   initialState,
   reducers: {
     setExpenses: (state, {payload}) => {
-      state.totalExpenses = payload?.totalExpenses ?? 0;
-      state.totalExpensesItems = payload?.totalExpensesItems ?? 0;
-      state.items = payload?.items ?? [];
+      state.totalExpenses =
+        payload?.totalExpenses ?? initialState.totalExpenses;
+      state.totalExpensesItems =
+        payload?.totalExpensesItems ?? initialState.totalExpensesItems;
+      state.items = payload?.items ?? initialState.items;
     },
   },
 });

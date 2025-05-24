@@ -1,12 +1,15 @@
 import React from 'react';
 import getStylesHook from 'utils/getStylesHook.ts';
 import TextField from 'components/inputs/TextField.tsx';
+import Animated, {FadeOutUp} from 'react-native-reanimated';
 
 const ListEmptyComponent = () => {
   const {styles} = useStyles();
 
   return (
-    <TextField style={styles.text}>No data for applied filters :(</TextField>
+    <Animated.View exiting={FadeOutUp}>
+      <TextField style={styles.text}>No data for applied filters :(</TextField>
+    </Animated.View>
   );
 };
 

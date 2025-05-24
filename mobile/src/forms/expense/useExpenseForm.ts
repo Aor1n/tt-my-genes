@@ -1,13 +1,12 @@
 import {useForm, UseFormHandleSubmit, UseFormReturn} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {z} from 'zod';
-import useFillEditForm from 'forms/expense/useFillEditForm.ts';
 import useNetwork from 'hooks/useNetwork.ts';
 import {notify} from 'utils/notify.ts';
 import useExpenses from 'hooks/query/useExpenses.ts';
 
 const expenseSchema = z.object({
-  id: z.string().uuid().nullish(),
+  id: z.string().uuid().or(z.number()).nullish(),
   title: z.string().min(2).max(20).trim(),
   amount: z.string().min(1, 'Minimum amount is 0$'),
   date: z.union([z.coerce.date(), z.string()]),
@@ -31,12 +30,13 @@ export default function useExpenseForm({
   onSuccessfulSubmit,
   onErrorSubmit,
 }: UseExpenseProps): UseExpenseReturn {
-  const defaultValues = {
-    title: '',
-    amount: '',
-    date: new Date(),
-  };
-
+  const defaultValues = expense
+    ? {...expense, date: new Date(expense.date)}
+    : {
+        title: '',
+        amount: '',
+        date: new Date(),
+      };
   const form = useForm<Expense>({
     defaultValues,
     mode: 'onChange',
@@ -45,18 +45,13 @@ export default function useExpenseForm({
 
   const {createExpense, editExpense} = useNetwork();
 
-  useFillEditForm({expense, form});
-
   const {fetchExpenses} = useExpenses();
 
   const handleSubmit = async (formValues: Expense) => {
     try {
-      const isEditForm = !!expense?.id;
+      const isEditForm = !!formValues.id;
       if (isEditForm) {
-        await editExpense({
-          id: expense?.id,
-          ...formValues,
-        });
+        await editExpense(formValues);
       } else {
         await createExpense(formValues);
       }
