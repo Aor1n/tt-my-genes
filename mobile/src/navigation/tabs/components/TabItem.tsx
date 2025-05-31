@@ -17,14 +17,14 @@ export interface TabItemProps {
 
 export const TabItem = React.memo(
   ({info, index}: TabItemProps) => {
-    const {navigate} = useNavigation<BottomTabNavigation>();
+    const {navigateDeprecated} = useNavigation<BottomTabNavigation>();
     const isFocused = index === info.key;
     const {styles} = useStyles(isFocused);
 
     return (
       <TouchableOpacity
         style={styles.container}
-        onPress={() => navigate(info.screen)}>
+        onPress={() => navigateDeprecated(info.screen)}>
         <TextField style={styles.text}>{info.screen}</TextField>
       </TouchableOpacity>
     );

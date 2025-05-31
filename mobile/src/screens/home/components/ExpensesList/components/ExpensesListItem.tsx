@@ -20,13 +20,13 @@ interface ExpensesListItemProps {
 const ExpensesListItem = ({item, index}: ExpensesListItemProps) => {
   const hasDate = item.isFirstDate || !item.isSkippedDate;
   const {styles} = useStyles(item.isBorderBottom);
-  const {navigate} = useNavigation();
+  const {navigateDeprecated} = useNavigation();
 
   const onRemovePress = useHandleExpenseRemove(item.id);
 
   const onEditPress = useCallback(
     () =>
-      navigate({
+      navigateDeprecated({
         name: SCREEN.EXPENSE_MODAL,
         params: {expense: item},
       }),

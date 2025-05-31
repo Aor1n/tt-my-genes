@@ -11,14 +11,14 @@ import {useAppDispatch} from 'store/hooks.ts';
 import {setFullName} from 'store/actions/profile.ts';
 
 const LoginForm = () => {
-  const {navigate} = useNavigation();
+  const {navigateDeprecated} = useNavigation();
   const {styles} = useStyles();
   const dispatch = useAppDispatch();
   const {form, handleSubmit} = useLoginForm({
     onSuccessfulSubmit: () => {
       dispatch(setFullName(form.watch('fullName')));
       form.reset();
-      navigate(SCREEN.ROOT_BOTTOM_TABS);
+      navigateDeprecated(SCREEN.ROOT_BOTTOM_TABS);
     },
   });
 

@@ -13,10 +13,10 @@ import IS_IOS from 'consts/IS_IOS.ts';
 const TabBar = ({index}: {index: BottomTabBarProps['state']['index']}) => {
   const {bottom: bottomInsert} = useSafeAreaInsets();
   const {styles} = useStyles(bottomInsert);
-  const {navigate} = useNavigation();
+  const {navigateDeprecated} = useNavigation();
 
   const onPress = useCbOnce(_ => {
-    navigate({
+    navigateDeprecated({
       name: SCREEN.EXPENSE_MODAL,
       params: {expense: undefined},
     });
