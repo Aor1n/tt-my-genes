@@ -9,6 +9,8 @@ import useLoginForm from 'forms/login/useLoginForm.ts';
 import Input from 'components/inputs/Input.tsx';
 import {useAppDispatch} from 'store/hooks.ts';
 import {setFullName} from 'store/actions/profile.ts';
+import {KeyboardAvoidingView} from 'react-native-keyboard-controller';
+import IS_IOS from 'consts/IS_IOS.ts';
 
 const LoginForm = () => {
   const {navigateDeprecated} = useNavigation();
@@ -23,24 +25,28 @@ const LoginForm = () => {
   });
 
   return (
-    <Pressable onPress={Keyboard.dismiss} style={styles.pressableContainer}>
-      <Container style={styles.container}>
-        <View style={styles.inputContainer}>
-          <Input
-            form={form}
-            name={'fullName'}
-            placeholder={'Enter name'}
-            isFullBordered
-          />
-        </View>
-        <Button title={'Login'} isLoading={false} onPress={handleSubmit} />
-      </Container>
-    </Pressable>
+    <KeyboardAvoidingView
+      style={styles.flexContainer}
+      behavior={IS_IOS ? 'padding' : 'height'}>
+      <Pressable onPress={Keyboard.dismiss} style={styles.flexContainer}>
+        <Container style={styles.container}>
+          <View style={styles.inputContainer}>
+            <Input
+              form={form}
+              name={'fullName'}
+              placeholder={'Enter name'}
+              isFullBordered
+            />
+          </View>
+          <Button title={'Login'} isLoading={false} onPress={handleSubmit} />
+        </Container>
+      </Pressable>
+    </KeyboardAvoidingView>
   );
 };
 
 const useStyles = getStylesHook(_ => ({
-  pressableContainer: {
+  flexContainer: {
     flex: 1,
   },
   container: {

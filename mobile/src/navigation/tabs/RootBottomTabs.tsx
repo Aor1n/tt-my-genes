@@ -23,6 +23,7 @@ const RootBottomTabs: RootStackComponent<
       initialRouteName={SCREEN.HOME}
       screenOptions={{
         headerShown: false,
+        animation: 'shift',
       }}
       tabBar={RenderTabBar}>
       <RootTabsStack.Screen name={SCREEN.HOME} component={HomeScreen} />

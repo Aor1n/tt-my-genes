@@ -1,5 +1,5 @@
 import React, {PropsWithChildren} from 'react';
-import {Keyboard, KeyboardAvoidingView, Pressable, View} from 'react-native';
+import {Keyboard, Pressable, View} from 'react-native';
 import useExpenseForm, {Expense} from 'forms/expense/useExpenseForm.ts';
 import Input from 'components/inputs/Input.tsx';
 import DatePickerInput from 'components/inputs/DatePickerInput.tsx';
@@ -8,6 +8,8 @@ import getStylesHook from 'utils/getStylesHook.ts';
 import {useNavigation} from '@react-navigation/native';
 import TextField from 'components/inputs/TextField.tsx';
 import IS_IOS from 'consts/IS_IOS.ts';
+
+import {KeyboardAvoidingView} from 'react-native-keyboard-controller';
 
 interface ExpenseFormProps extends PropsWithChildren {
   expense?: Expense;
@@ -27,6 +29,7 @@ const ExpenseForm = ({expense, children}: ExpenseFormProps) => {
   return (
     <KeyboardAvoidingView
       style={styles.pressableContainer}
+      keyboardVerticalOffset={24}
       behavior={IS_IOS ? 'padding' : 'height'}>
       <Pressable onPress={Keyboard.dismiss} style={styles.pressableContainer}>
         <View style={styles.container}>
