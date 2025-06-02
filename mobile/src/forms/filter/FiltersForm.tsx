@@ -47,7 +47,12 @@ const FiltersForm = () => {
         <View style={styles.wrapper}>
           <View style={styles.inputs}>
             <Input form={form} name={'title'} label={'Title'} />
-            <Input form={form} name={'amount'} label={'Amount'} />
+            <Input
+              form={form}
+              name={'amount'}
+              label={'Amount'}
+              keyboardType={'numeric'}
+            />
             <DatePickerInput form={form} name={'date'} label={'Date'} />
           </View>
         </View>
